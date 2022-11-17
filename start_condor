@@ -1,0 +1,2 @@
+#!/bin/bash
+python run_submissions.py --output checking_folder_1 --geofile combi.root --sub_type 1 --number 20 --input input_for_muon_prod_low_stat.txt
