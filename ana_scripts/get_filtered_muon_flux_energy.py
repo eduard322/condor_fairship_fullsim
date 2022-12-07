@@ -9,13 +9,18 @@ r.PyConfig.IgnoreCommandLineOptions = True
 import shipunit as u
 import rootUtils as ut
 import logger as log
+from array import array
+import os
+import sys
+from copy import deepcopy
+condor_path = os.environ['CONDOR_FOLDER']
+sys.path.append(os.path.join(condor_path, "other_scripts"))
+from extract_geo import *
 
-
-
-def check_projection(rayPoint, rayDirection):
-	x = rayPoint[0] - (rayPoint[2] - (-3170))*rayDirection[0]/rayDirection[2]
-	y = rayPoint[1] - (rayPoint[2] - (-3170))*rayDirection[1]/rayDirection[2]
-	if (-190 < x and x < 190) and (-327.9 < y and y < 327.9):
+def check_projection(rayPoint, rayDirection, shield_x, shield_y, shield_z):
+	x = rayPoint[0] - (rayPoint[2] - shield_z)*rayDirection[0]/rayDirection[2]
+	y = rayPoint[1] - (rayPoint[2] - shield_z)*rayDirection[1]/rayDirection[2]
+	if (-(shield_x + 10) < x and x < (shield_x + 10)) and (-(shield_y + 10)< y and y < (shield_y + 10)):
 		return (True, x, y)
 	else:
 		return (False, x, y)
@@ -40,9 +45,19 @@ def main():
         help='''File to write the flux maps to. '''
         '''Will be recreated if it already exists.''')
     
-    
+
     args = parser.parse_args()
 
+    outer_path = "/".join([i for i in args.inputfile.split("/")[:-2]])
+    #print(outer_path)
+    geoFile = find_file("geo*", outer_path)[0]
+    shield_zx, shield_zy = muon_shield(geoFile)
+    shield_y = shield_zy['y'][-4]+10
+    shield_x = shield_zx['x'][-4]+10
+    shield_z = np.array(deepcopy(shield_zx['z']))
+    shield_z[shield_z==None]=-10000
+    shield_z = np.max(shield_z)
+    #print(shield_x, shield_y, shield_z)
     ch = r.TChain('cbmsim')
     ch.Add(args.inputfile)
     n = ch.GetEntries()
@@ -87,7 +102,7 @@ def main():
                 P = np.hypot(pz, pt)
 
                 #####
-                (key_proj,x_key,y_key) = check_projection(np.array([x,y,z]), np.array([px,py,pz]))
+                (key_proj,x_key,y_key) = check_projection(np.array([x,y,z]), np.array([px,py,pz]), shield_x, shield_y, shield_z)
        
                 #####
 
@@ -125,9 +140,7 @@ def main():
                 else:
                     filtered_muons_energies.append(momentum_trid[tr])
 
-        
-                    
-
+    
     print(filtered_muons, filtered_muons_unw)
     f = open("flux_4_energies", "w")
     for x,y in zip(B_ids_unw, B_ids):
@@ -146,6 +159,15 @@ def main():
         f.write("\n")
     f.close()
     np.savetxt("energy_filtered_keys", np.array(filtered_muons_energies))
+    #myFile = r.TFile.Open("file.root", "RECREATE")
+    #myFile.WriteObject(array(filtered_muons_energies), "output_data")
+    columns = ["P", "weight", "key_proj", "x_key","y_key", "x","y","z", "px","py","pz"]
+    df_np = np.array(filtered_muons_energies, dtype=np.float64)
+    df = r.RDF.MakeNumpyDataFrame({columns[i]: df_np[:,i] for i in range(len(columns))})
+    # ... or print the content
+    #df.Display().Print()
+    # ... or save the data as a ROOT file
+    df.Snapshot('tree', 'output_tr.root')
 
 if __name__ == '__main__':
     r.gErrorIgnoreLevel = r.kWarning

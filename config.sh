@@ -14,11 +14,12 @@ export EOS_PUBLIC=/eos/experiment/ship/user/edursov
 
 # define input parameters
 
-OUTPUT=checking_folder_1
-GEOFILE=combi.root
-export SUBTYPE=1
+#OUTPUT=combi_ecn3_spill_snd_scor_planes_fixed_fields_11102022
+OUTPUT=optimized_ecn3_spill_26112022
+GEOFILE=optimized_26112022.root
+export SUBTYPE=2
 JOB_NUMBER=20
-INPUT_FILE=input_for_muon_prod_low_stat.txt
+INPUT_FILE=input_for_muon_prod.txt
 
 # generate execute file
 

@@ -1,7 +1,0 @@
-/cvmfs/ship.cern.ch/SHiP-2022/May/alibuild/alibuild_helpers /pool/condor/dir_243657
-/pool/condor/dir_243657
-Starting script.
-/eos/experiment/ship/data/Mbias/background-prod-2018/pythia8_Geant4_10.0_withCharmandBeauty0_mu.root
-checking_folder_1
-0
-[[0, 0, 0]] [[0, 0, 0]]
