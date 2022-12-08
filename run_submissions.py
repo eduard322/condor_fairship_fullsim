@@ -22,9 +22,12 @@ if sub_type == 0:
 elif sub_type == 1:
     submit = os.path.join("condor_submit_files", "sim_flux.sub")
     EOS = os.environ['EOS_DATA']
-else:
+elif sub_type == 2:
     submit = os.path.join("condor_submit_files", "sim_flux_snd.sub")
     EOS = os.environ['EOS_DATA']
+else:
+    submit = os.path.join("condor_submit_files", "docker_universe.sub")
+    EOS = os.environ['EOS_PUBLIC']
 
 
 

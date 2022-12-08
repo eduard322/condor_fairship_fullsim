@@ -1,2 +1,2 @@
 #!/bin/bash
-python run_submissions.py --output optimized_ecn3_spill_26112022 --geofile optimized_26112022.root --sub_type 2 --number 20 --input input_for_muon_prod.txt
+python run_submissions.py --output docker_test_2_optimized_26112022 --geofile optimized_26112022.root --sub_type 3 --number 20 --input input_for_muon_prod_1.txt

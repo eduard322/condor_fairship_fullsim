@@ -1,16 +1,17 @@
 # not implemented yet
 universe                = docker
 docker_image            = docker.io/mrphys/reana_fs:combined_121122_v2
-#executable              = /usr/bin/python /sw/slc7_x86-64/FairShip/master-local1/macro/run_simScript.py
-transfer_input_files    = scripts_to_condor/test_sub.sh, krb5.conf, edursov.keytab, combi.root
-executable              = test_sub.sh 
-#arguments               = -b -q /usr/local/share/doc/root/tutorials/benchmarks.C
-should_transfer_files   = YES
-when_to_transfer_output = ON_EXIT
+arguments = $(directory) $(ProcId) $(N) $(muon_file) $(n_events) $(SUB) $(GEOFILE)
+environment = "EOS_DATA=$ENV(EOS_DATA) EOS_PUBLIC=$ENV(EOS_PUBLIC) GEOFILE=$ENV(GEOFILE) KERB=$ENV(KERB) SUBTYPE=$ENV(SUBTYPE) CONDOR_FOLDER=$ENV(CONDOR_FOLDER) SHIP_CVMFS_SETUP_FILE=$ENV(SHIP_CVMFS_SETUP_FILE) MAGNET_GEO=$ENV(MAGNET_GEO)"
+transfer_input_files    = scripts_to_condor/docker_universe_sim.sh, docker_files/krb5.conf, $ENV(KERB), geofiles/$ENV(GEOFILE)
+executable              = scripts_to_condor/docker_universe_sim.sh 
+#should_transfer_files   = YES
+#when_to_transfer_output = ON_EXIT
 transfer_output_files = ""
 output = $ENV(CONDOR_FOLDER)/logs/$ENV(SUBTYPE)/$(ProcId)/output.out
 error = $ENV(CONDOR_FOLDER)/logs/$ENV(SUBTYPE)/$(ProcId)/error.err
 log = $ENV(CONDOR_FOLDER)/logs/$ENV(SUBTYPE)/$(ProcId)/logs.log
 request_memory          = 8000M
 +Requirements           = OpSysAndVer =?= "CentOS7"
-queue 1
++JobFlavour = "testmatch"
+queue $(N)
