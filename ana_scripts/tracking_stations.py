@@ -165,7 +165,7 @@ def main():
     df_np = np.array(filtered_muons_energies, dtype=np.float64)
     df = r.RDF.MakeNumpyDataFrame({columns[i]: df_np[:,i] for i in range(len(columns))})
     # ... or print the content
-    #df.Display().Print()
+    df.Display().Print()
     # ... or save the data as a ROOT file
     df.Snapshot('tree', 'output_tr.root')
 

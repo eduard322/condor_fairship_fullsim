@@ -1,0 +1,19 @@
++ echo 'Starting script.'
++ DIR=combi_ecn3_spill_snd_scor_planes_fixed_fields_11102022
++ ProcId=19
++ NJOBS=20
++ LSB_JOBINDEX=20
++ MUONS=/eos/experiment/ship/data/Mbias/background-prod-2018/pythia8_Geant4_10.0_withCharmandBeauty64000_mu.root
++ NTOTAL=6239932
++ SUB=64
++ MUSHIELD=8
++ N=312008
++ FIRST=5927924
++ python /afs/cern.ch/user/e/edursov/private/SIMULATIONS/my_FairShip/muon/github_transport/run_processing/ana_scripts/sensitive_planes.py root://eospublic.cern.ch//eos/experiment/ship/user/edursov/combi_ecn3_spill_snd_scor_planes_fixed_fields_11102022/64/20/ship.conical.MuonBack-TGeant4.root
+Error in <TSystem::ExpandFileName>: input: $HOME/.root.mimes, output: $HOME/.root.mimes
++ xrdcp output_snd_planes_0.root root://eosuser.cern.ch//eos/user/e/edursov/ship_data/combi_ecn3_spill_snd_scor_planes_fixed_fields_11102022/64/20/output_snd_planes_0.root
+[262.2kB/262.2kB][100%][==================================================][262.2kB/s]  [262.2kB/262.2kB][100%][==================================================][262.2kB/s]  
++ xrdcp output_snd_planes_1.root root://eosuser.cern.ch//eos/user/e/edursov/ship_data/combi_ecn3_spill_snd_scor_planes_fixed_fields_11102022/64/20/output_snd_planes_1.root
+[94.06kB/94.06kB][100%][==================================================][94.06kB/s]  [94.06kB/94.06kB][100%][==================================================][94.06kB/s]  
++ xrdcp output_snd_planes_2.root root://eosuser.cern.ch//eos/user/e/edursov/ship_data/combi_ecn3_spill_snd_scor_planes_fixed_fields_11102022/64/20/output_snd_planes_2.root
+[33.84kB/33.84kB][100%][==================================================][33.84kB/s]  [33.84kB/33.84kB][100%][==================================================][33.84kB/s]  

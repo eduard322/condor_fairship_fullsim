@@ -14,13 +14,12 @@ export EOS_PUBLIC=/eos/experiment/ship/user/edursov
 
 # define input parameters
 
-#OUTPUT=combi_ecn3_spill_snd_scor_planes_fixed_fields_11102022
-OUTPUT=docker_test_2_optimized_26112022
-export GEOFILE=optimized_26112022.root
+#OUTPUT=optimized_ecn3_spill_snd_scor_planes_fixed_fields_23102023
+OUTPUT=test_docker_2023_2
+export GEOFILE=combi.root
 export SUBTYPE=3
 JOB_NUMBER=20
 INPUT_FILE=input_for_muon_prod_1.txt
-
 # define kerberos file 
 export KERB=docker_files/edursov.keytab
 

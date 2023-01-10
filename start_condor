@@ -1,2 +1,2 @@
 #!/bin/bash
-python run_submissions.py --output docker_test_2_optimized_26112022 --geofile optimized_26112022.root --sub_type 3 --number 20 --input input_for_muon_prod_1.txt
+python run_submissions.py --output test_docker_2023_2 --geofile combi.root --sub_type 3 --number 20 --input input_for_muon_prod_1.txt

@@ -1,6 +1,5 @@
-# not implemented yet
 universe                = docker
-docker_image            = docker.io/mrphys/reana_fs:combined_121122_v2
+docker_image            = docker.io/mrphys/mfsimage:ecn3_condor_snd_01
 arguments = $(directory) $(ProcId) $(N) $(muon_file) $(n_events) $(SUB) $(GEOFILE)
 environment = "EOS_DATA=$ENV(EOS_DATA) EOS_PUBLIC=$ENV(EOS_PUBLIC) GEOFILE=$ENV(GEOFILE) KERB=$ENV(KERB) SUBTYPE=$ENV(SUBTYPE) CONDOR_FOLDER=$ENV(CONDOR_FOLDER) SHIP_CVMFS_SETUP_FILE=$ENV(SHIP_CVMFS_SETUP_FILE) MAGNET_GEO=$ENV(MAGNET_GEO)"
 transfer_input_files    = scripts_to_condor/docker_universe_sim.sh, docker_files/krb5.conf, $ENV(KERB), geofiles/$ENV(GEOFILE)
@@ -11,7 +10,7 @@ transfer_output_files = ""
 output = $ENV(CONDOR_FOLDER)/logs/$ENV(SUBTYPE)/$(ProcId)/output.out
 error = $ENV(CONDOR_FOLDER)/logs/$ENV(SUBTYPE)/$(ProcId)/error.err
 log = $ENV(CONDOR_FOLDER)/logs/$ENV(SUBTYPE)/$(ProcId)/logs.log
-request_memory          = 8000M
+request_memory          = 4000M
 +Requirements           = OpSysAndVer =?= "CentOS7"
 +JobFlavour = "testmatch"
 queue $(N)

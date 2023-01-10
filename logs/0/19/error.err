@@ -1,0 +1,555 @@
++ echo 'Starting script.'
++ DIR=optimized_ecn3_spill_snd_scor_planes_fixed_fields_23102023
++ ProcId=19
++ NJOBS=20
++ LSB_JOBINDEX=20
++ MUONS=/eos/experiment/ship/data/Mbias/background-prod-2018/pythia8_Geant4_10.0_withCharmandBeauty13000_mu.root
++ NTOTAL=6244139
++ SUB=13
++ GEOFILE=combi.root
++ MUSHIELD=8
++ N=312225
++ FIRST=5931914
++ eos stat /eos/experiment/ship/user/edursov/optimized_ecn3_spill_snd_scor_planes_fixed_fields_23102023/13/20/ship.conical.MuonBack-TGeant4.root
+error: failed to stat /eos/experiment/ship/user/edursov/optimized_ecn3_spill_snd_scor_planes_fixed_fields_23102023/13/20/ship.conical.MuonBack-TGeant4.root
++ python /afs/cern.ch/user/e/edursov/private/SIMULATIONS/my_FairShip/sw/slc7_x86-64/FairShip/master-local1/macro/run_simScript.py --muShieldDesign 8 --MuonBack --nEvents 312225 --firstEvent 5931914 -f /eos/experiment/ship/data/Mbias/background-prod-2018/pythia8_Geant4_10.0_withCharmandBeauty13000_mu.root --FastMuon -g /afs/cern.ch/user/e/edursov/private/SIMULATIONS/my_FairShip/muon/github_transport/run_processing/geofiles/combi.root
+Error in <TSystem::ExpandFileName>: input: $HOME/.root.mimes, output: $HOME/.root.mimes
+Info in <EmulsionMagnet::Chosen TP Design (0 no, 1 yes) >:  3
+Info in <Target::SetDetectorDesign>:  to 3
+Info in <ecal::ecal>: Geometry is read from file ecal_rect5x10m2.geoz3615.2000000000003.geo.
+Info in <ecal::ecal>: Size of cell of type 2 is 5.970000 cm.
+Info in <hcal::hcal>: Geometry is read from file hcal_rect.geoz3715.2000000000003.geo.
+Info in <hcal::hcal>: Number of modules is 924, lightmap none
+Info in <hcal::hcal>: Size of cell of type 22 is 23.959999 cm.
+Info in <TGeoManager::TGeoManager>: Geometry FAIRGeom, FAIR geometry created
+Info in <TGeoManager::SetTopVolume>: Top volume is cave. Master volume is cave
+Info in <TGeoNavigator::BuildCache>: --- Maximum geometry depth set to 100
+Info in <TGeoManager::SetVisLevel>: Automatic visible depth disabled
+Info in <TGeoManager::SetVisLevel>: Automatic visible depth disabled
+Info in <ecal::InitMedia>: Initializing media.
+Info in <hcal::InitMedia>: Initializing media.
+Info in <TGeoManager::CheckGeometry>: Fixing runtime shapes...
+Info in <TGeoManager::CheckGeometry>: ...Nothing to fix
+Info in <TGeoManager::CloseGeometry>: Counting nodes...
+Info in <TGeoManager::Voxelize>: Voxelizing...
+Info in <TGeoManager::CloseGeometry>: Building cache...
+Info in <TGeoManager::CountLevels>: max level = 6, max placements = 2000
+Info in <TGeoManager::CloseGeometry>: 8347127 nodes/ 1268 volume UID's in FAIR geometry
+Info in <TGeoManager::CloseGeometry>: ----------------modeler ready----------------
+Info in <TObject::SetNavigator>: TG4RootNavigator created and registered to G4TransportationManager
+Info in <TObject::Initialize>: Creating G4 hierarchy ...
+Info in <TGeoManager::ConvertReflections>: Converting reflections in: FAIRGeom - FAIR geometry ...
+Info in <TGeoManager::ConvertReflections>: Done
+Info in <TObject::ConnectToG4>: ROOT detector construction class connected to G4RunManager
+++++  TG4Warning:  ++++
+    TG4SDServices::GetVolumeID:
+    Unknown Volume Id for volRpc
++++++++++++++++++++++++
+
+++++  TG4Warning:  ++++
+    TG4SDServices::GetVolumeID:
+    Unknown Volume Id for TT_scifimat_hor
++++++++++++++++++++++++
+
+++++  TG4Warning:  ++++
+    TG4SDServices::GetVolumeID:
+    Unknown Volume Id for TT_scifimat_vert
++++++++++++++++++++++++
+
+++++  TG4Warning:  ++++
+    TG4SDServices::GetVolumeID:
+    Unknown Volume Id for HPT_scifimat_hor
++++++++++++++++++++++++
+
+++++  TG4Warning:  ++++
+    TG4SDServices::GetVolumeID:
+    Unknown Volume Id for HPT_scifimat_vert
++++++++++++++++++++++++
+
+Info in <TCanvas::Print>: png file Bzx.png has been created
+Info in <TCanvas::Print>: png file Bzy.png has been created
+ *** Break *** segmentation violation
+
+
+
+===========================================================
+There was a crash.
+This is the entire stack trace of all threads:
+===========================================================
+
+Thread 6 (Thread 0x2b7eb41d3700 (LWP 154)):
+#0  0x00002b7e71505b3b in do_futex_wait.constprop () from /lib64/libpthread.so.0
+#1  0x00002b7e71505bcf in __new_sem_wait_slow.constprop.0 () from /lib64/libpthread.so.0
+#2  0x00002b7e71505c6b in sem_wait
+
+GLIBC_2.2.5 () from /lib64/libpthread.so.0
+#3  0x00002b7eb19f9c96 in XrdSysSemaphore::Wait (this=0xbe2a7e0) at /home/trufsnd/SHIPBUILD/sw/BUILD/4934bfa0a2c58d2a0b2c2ac23b8455e686fca8b7/XRootD/src/./XrdSys/XrdSysPthread.hh:453
+#4  XrdCl::SyncQueue<XrdCl::JobManager::JobHelper>::Get (this=0xbde4478) at /home/trufsnd/SHIPBUILD/sw/BUILD/4934bfa0a2c58d2a0b2c2ac23b8455e686fca8b7/XRootD/src/./XrdCl/XrdClSyncQueue.hh:66
+#5  XrdCl::JobManager::RunJobs (this=0xbde4460) at /home/trufsnd/SHIPBUILD/sw/BUILD/4934bfa0a2c58d2a0b2c2ac23b8455e686fca8b7/XRootD/src/XrdCl/XrdClJobManager.cc:151
+#6  0x00002b7eb19f9d69 in RunRunnerThread (arg=<optimized out>) at /home/trufsnd/SHIPBUILD/sw/BUILD/4934bfa0a2c58d2a0b2c2ac23b8455e686fca8b7/XRootD/src/XrdCl/XrdClJobManager.cc:34
+#7  0x00002b7e714ffea5 in start_thread () from /lib64/libpthread.so.0
+#8  0x00002b7e71f1bb0d in clone () from /lib64/libc.so.6
+
+Thread 5 (Thread 0x2b7eb43d4700 (LWP 153)):
+#0  0x00002b7e71505b3b in do_futex_wait.constprop () from /lib64/libpthread.so.0
+#1  0x00002b7e71505bcf in __new_sem_wait_slow.constprop.0 () from /lib64/libpthread.so.0
+#2  0x00002b7e71505c6b in sem_wait
+
+GLIBC_2.2.5 () from /lib64/libpthread.so.0
+#3  0x00002b7eb19f9c96 in XrdSysSemaphore::Wait (this=0xbe2a7e0) at /home/trufsnd/SHIPBUILD/sw/BUILD/4934bfa0a2c58d2a0b2c2ac23b8455e686fca8b7/XRootD/src/./XrdSys/XrdSysPthread.hh:453
+#4  XrdCl::SyncQueue<XrdCl::JobManager::JobHelper>::Get (this=0xbde4478) at /home/trufsnd/SHIPBUILD/sw/BUILD/4934bfa0a2c58d2a0b2c2ac23b8455e686fca8b7/XRootD/src/./XrdCl/XrdClSyncQueue.hh:66
+#5  XrdCl::JobManager::RunJobs (this=0xbde4460) at /home/trufsnd/SHIPBUILD/sw/BUILD/4934bfa0a2c58d2a0b2c2ac23b8455e686fca8b7/XRootD/src/XrdCl/XrdClJobManager.cc:151
+#6  0x00002b7eb19f9d69 in RunRunnerThread (arg=<optimized out>) at /home/trufsnd/SHIPBUILD/sw/BUILD/4934bfa0a2c58d2a0b2c2ac23b8455e686fca8b7/XRootD/src/XrdCl/XrdClJobManager.cc:34
+#7  0x00002b7e714ffea5 in start_thread () from /lib64/libpthread.so.0
+#8  0x00002b7e71f1bb0d in clone () from /lib64/libc.so.6
+
+Thread 4 (Thread 0x2b7eb45d5700 (LWP 152)):
+#0  0x00002b7e71505b3b in do_futex_wait.constprop () from /lib64/libpthread.so.0
+#1  0x00002b7e71505bcf in __new_sem_wait_slow.constprop.0 () from /lib64/libpthread.so.0
+#2  0x00002b7e71505c6b in sem_wait
+
+GLIBC_2.2.5 () from /lib64/libpthread.so.0
+#3  0x00002b7eb19f9c96 in XrdSysSemaphore::Wait (this=0xbe2a7e0) at /home/trufsnd/SHIPBUILD/sw/BUILD/4934bfa0a2c58d2a0b2c2ac23b8455e686fca8b7/XRootD/src/./XrdSys/XrdSysPthread.hh:453
+#4  XrdCl::SyncQueue<XrdCl::JobManager::JobHelper>::Get (this=0xbde4478) at /home/trufsnd/SHIPBUILD/sw/BUILD/4934bfa0a2c58d2a0b2c2ac23b8455e686fca8b7/XRootD/src/./XrdCl/XrdClSyncQueue.hh:66
+#5  XrdCl::JobManager::RunJobs (this=0xbde4460) at /home/trufsnd/SHIPBUILD/sw/BUILD/4934bfa0a2c58d2a0b2c2ac23b8455e686fca8b7/XRootD/src/XrdCl/XrdClJobManager.cc:151
+#6  0x00002b7eb19f9d69 in RunRunnerThread (arg=<optimized out>) at /home/trufsnd/SHIPBUILD/sw/BUILD/4934bfa0a2c58d2a0b2c2ac23b8455e686fca8b7/XRootD/src/XrdCl/XrdClJobManager.cc:34
+#7  0x00002b7e714ffea5 in start_thread () from /lib64/libpthread.so.0
+#8  0x00002b7e71f1bb0d in clone () from /lib64/libc.so.6
+
+Thread 3 (Thread 0x2b7eb3fd2700 (LWP 151)):
+#0  0x00002b7e71506e9d in nanosleep () from /lib64/libpthread.so.0
+#1  0x00002b7eb15accd8 in XrdSysTimer::Wait (mills=<optimized out>) at /home/trufsnd/SHIPBUILD/sw/BUILD/4934bfa0a2c58d2a0b2c2ac23b8455e686fca8b7/XRootD/src/XrdSys/XrdSysTimer.cc:239
+#2  0x00002b7eb1981f5d in XrdCl::TaskManager::RunTasks (this=0xbe2be60) at /home/trufsnd/SHIPBUILD/sw/BUILD/4934bfa0a2c58d2a0b2c2ac23b8455e686fca8b7/XRootD/src/XrdCl/XrdClTaskManager.cc:246
+#3  0x00002b7eb1982079 in RunRunnerThread (arg=<optimized out>) at /home/trufsnd/SHIPBUILD/sw/BUILD/4934bfa0a2c58d2a0b2c2ac23b8455e686fca8b7/XRootD/src/XrdCl/XrdClTaskManager.cc:38
+#4  0x00002b7e714ffea5 in start_thread () from /lib64/libpthread.so.0
+#5  0x00002b7e71f1bb0d in clone () from /lib64/libc.so.6
+
+Thread 2 (Thread 0x2b7eb3dd1700 (LWP 150)):
+#0  0x00002b7e71f1c0e3 in epoll_wait () from /lib64/libc.so.6
+#1  0x00002b7eb15a70b2 in XrdSys::IOEvents::PollE::Begin (this=0xb3307020, syncsem=<optimized out>, retcode=<optimized out>, eTxt=<optimized out>) at /home/trufsnd/SHIPBUILD/sw/BUILD/4934bfa0a2c58d2a0b2c2ac23b8455e686fca8b7/XRootD/src/./XrdSys/XrdSysIOEventsPollE.icc:212
+#2  0x00002b7eb15a3a1d in XrdSys::IOEvents::BootStrap::Start (parg=0x7ffd562baad0) at /home/trufsnd/SHIPBUILD/sw/BUILD/4934bfa0a2c58d2a0b2c2ac23b8455e686fca8b7/XRootD/src/XrdSys/XrdSysIOEvents.cc:133
+#3  0x00002b7eb15ac377 in XrdSysThread_Xeq (myargs=0xb32ff720) at /home/trufsnd/SHIPBUILD/sw/BUILD/4934bfa0a2c58d2a0b2c2ac23b8455e686fca8b7/XRootD/src/XrdSys/XrdSysPthread.cc:86
+#4  0x00002b7e714ffea5 in start_thread () from /lib64/libpthread.so.0
+#5  0x00002b7e71f1bb0d in clone () from /lib64/libc.so.6
+
+Thread 1 (Thread 0x2b7e70e47dc0 (LWP 119)):
+#0  0x00002b7e71ee2659 in waitpid () from /lib64/libc.so.6
+#1  0x00002b7e71e5ff62 in do_system () from /lib64/libc.so.6
+#2  0x00002b7e71e60311 in system () from /lib64/libc.so.6
+#3  0x00002b7e79f8bced in TUnixSystem::Exec (shellcmd=<optimized out>, this=0x11f93d0) at /home/trufsnd/SHIPBUILD/sw/SOURCES/ROOT/v6-26-02/v6-26-02/core/unix/src/TUnixSystem.cxx:2108
+#4  TUnixSystem::StackTrace (this=0x11f93d0) at /home/trufsnd/SHIPBUILD/sw/SOURCES/ROOT/v6-26-02/v6-26-02/core/unix/src/TUnixSystem.cxx:2399
+#5  0x00002b7e79a82f65 in (anonymous namespace)::do_trace (sig=1) at /home/trufsnd/SHIPBUILD/sw/SOURCES/ROOT/v6-26-02/v6-26-02/bindings/pyroot/cppyy/cppyy-backend/clingwrapper/src/clingwrapper.cxx:182
+#6  (anonymous namespace)::TExceptionHandlerImp::HandleException (this=<optimized out>, sig=1) at /home/trufsnd/SHIPBUILD/sw/SOURCES/ROOT/v6-26-02/v6-26-02/bindings/pyroot/cppyy/cppyy-backend/clingwrapper/src/clingwrapper.cxx:195
+#7  0x00002b7e79f8e739 in TUnixSystem::DispatchSignals (this=0x11f93d0, sig=kSigSegmentationViolation) at /home/trufsnd/SHIPBUILD/sw/SOURCES/ROOT/v6-26-02/v6-26-02/core/unix/src/TUnixSystem.cxx:3614
+#8  <signal handler called>
+#9  0x00002b7ea9c89952 in FairRootFileSink::Write (this=0x9e26e90) at /home/trufsnd/SHIPBUILD/sw/SOURCES/FairRoot/v18.4.2_snd/0a8728c012/base/sink/FairRootFileSink.cxx:345
+#10 0x00002b7ea9ca9688 in FairRootManager::Write (this=0x9d0bab0) at /home/trufsnd/SHIPBUILD/sw/SOURCES/FairRoot/v18.4.2_snd/0a8728c012/base/steer/FairRootManager.cxx:400
+#11 0x00002b7ea9c7a01e in FairMCApplication::StopRun (this=0xcd65da0) at /home/trufsnd/SHIPBUILD/sw/SOURCES/FairRoot/v18.4.2_snd/0a8728c012/base/sim/FairMCApplication.cxx:782
+#12 0x00002b7ea9c775ac in FairMCApplication::GeneratePrimaries (this=0xcd65da0) at /home/trufsnd/SHIPBUILD/sw/SOURCES/FairRoot/v18.4.2_snd/0a8728c012/base/sim/FairMCApplication.cxx:1163
+#13 0x00002b7eb6e00265 in TG4PrimaryGeneratorAction::GeneratePrimaries (this=0x1c8b0790, event=0x9d800d00) at /home/trufsnd/SHIPBUILD/sw/SOURCES/GEANT4_VMC/v5-4/v5-4/source/run/src/TG4PrimaryGeneratorAction.cxx:342
+#14 0x00002b7ecf2554d9 in G4RunManager::GenerateEvent (this=0x1b1b61e0, i_event=312224) at /home/trufsnd/SHIPBUILD/sw/SOURCES/GEANT4/v10.7.2/v10.7.2/source/run/src/G4RunManager.cc:584
+#15 0x00002b7ecf254f43 in G4RunManager::ProcessOneEvent (this=0x1b1b61e0, i_event=312224) at /home/trufsnd/SHIPBUILD/sw/SOURCES/GEANT4/v10.7.2/v10.7.2/source/run/src/G4RunManager.cc:509
+#16 0x00002b7ecf254de3 in G4RunManager::DoEventLoop (this=0x1b1b61e0, n_event=312225, macroFile=0x0, n_select=-1) at /home/trufsnd/SHIPBUILD/sw/SOURCES/GEANT4/v10.7.2/v10.7.2/source/run/src/G4RunManager.cc:471
+#17 0x00002b7ecf254577 in G4RunManager::BeamOn (this=0x1b1b61e0, n_event=312225, macroFile=0x0, n_select=-1) at /home/trufsnd/SHIPBUILD/sw/SOURCES/GEANT4/v10.7.2/v10.7.2/source/run/src/G4RunManager.cc:343
+#18 0x00002b7eb6e0d594 in TG4RunManager::ProcessRun (this=0x1956f510, nofEvents=312225) at /home/trufsnd/SHIPBUILD/sw/SOURCES/GEANT4_VMC/v5-4/v5-4/source/run/src/TG4RunManager.cxx:549
+#19 0x00002b7ea9c79dc9 in FairMCApplication::RunMC (this=0xcd65da0, nofEvents=312225) at /home/trufsnd/SHIPBUILD/sw/SOURCES/FairRoot/v18.4.2_snd/0a8728c012/base/sim/FairMCApplication.cxx:461
+#20 0x00002b7e79a826b0 in WrapperCall (method=<optimized out>, nargs=1, args_=0x7ffd562bf5c0, self=0x76a6b50, result=0x0) at /home/trufsnd/SHIPBUILD/sw/SOURCES/ROOT/v6-26-02/v6-26-02/bindings/pyroot/cppyy/cppyy-backend/clingwrapper/src/clingwrapper.cxx:778
+#21 0x00002b7e7981ed86 in GILCallV (ctxt=<optimized out>, self=<optimized out>, method=<optimized out>) at /home/trufsnd/SHIPBUILD/sw/SOURCES/ROOT/v6-26-02/v6-26-02/bindings/pyroot/cppyy/CPyCppyy/src/Executors.cxx:68
+#22 CPyCppyy::(anonymous namespace)::VoidExecutor::Execute (this=<optimized out>, method=<optimized out>, self=<optimized out>, ctxt=<optimized out>) at /home/trufsnd/SHIPBUILD/sw/SOURCES/ROOT/v6-26-02/v6-26-02/bindings/pyroot/cppyy/CPyCppyy/src/Executors.cxx:410
+#23 0x00002b7e7980a679 in CPyCppyy::CPPMethod::ExecuteFast (ctxt=<optimized out>, offset=<optimized out>, self=<optimized out>, this=0x765a2d0) at /home/trufsnd/SHIPBUILD/sw/SOURCES/ROOT/v6-26-02/v6-26-02/bindings/pyroot/cppyy/CPyCppyy/src/CPPMethod.cxx:74
+#24 CPyCppyy::CPPMethod::Execute (this=0x765a2d0, self=<optimized out>, offset=<optimized out>, ctxt=<optimized out>) at /home/trufsnd/SHIPBUILD/sw/SOURCES/ROOT/v6-26-02/v6-26-02/bindings/pyroot/cppyy/CPyCppyy/src/CPPMethod.cxx:725
+#25 0x00002b7e7980ad3a in CPyCppyy::CPPMethod::Call (this=0x765a2d0, self=
+0x2b7ea85def70: 0x2b7ea99a0120, args=0x2b7ea9bcd6a0, kwds=<optimized out>, ctxt=0x7ffd562bf5a0) at /home/trufsnd/SHIPBUILD/sw/SOURCES/ROOT/v6-26-02/v6-26-02/bindings/pyroot/cppyy/CPyCppyy/src/CPPMethod.cxx:783
+#26 0x00002b7e79810ce9 in CPyCppyy::(anonymous namespace)::mp_call (pymeth=pymeth
+entry=0x2b7ea85def60, args=args
+entry=0x2b7ea9bcd6a0, kwds=kwds
+entry=0x0) at /home/trufsnd/SHIPBUILD/sw/SOURCES/ROOT/v6-26-02/v6-26-02/bindings/pyroot/cppyy/CPyCppyy/src/CPPOverload.cxx:566
+#27 0x00002b7e71092ef9 in _PyObject_FastCallDict (func=0x2b7ea85def60, args=<optimized out>, nargs=<optimized out>, kwargs=kwargs
+entry=0x0) at Objects/abstract.c:2331
+#28 0x00002b7e71093481 in _PyObject_FastCallKeywords (func=func
+entry=0x2b7ea85def60, stack=<optimized out>, nargs=nargs
+entry=1, kwnames=kwnames
+entry=0x0) at Objects/abstract.c:2496
+#29 0x00002b7e71146c8a in call_function (pp_stack=pp_stack
+entry=0x7ffd562bf850, oparg=<optimized out>, kwnames=kwnames
+entry=0x0) at Python/ceval.c:4875
+#30 0x00002b7e7114a269 in _PyEval_EvalFrameDefault (f=<optimized out>, throwflag=<optimized out>) at Python/ceval.c:3335
+#31 0x00002b7e71146986 in _PyEval_EvalCodeWithName (_co=_co
+entry=0x2b7e70faad20, globals=globals
+entry=0x2b7e70f093f0, locals=locals
+entry=0x2b7e70f093f0, args=args
+entry=0x0, argcount=argcount
+entry=0, kwnames=kwnames
+entry=0x0, kwargs=0x0, kwcount=0, kwstep=2, defs=0x0, defcount=0, kwdefs=0x0, closure=0x0, name=0x0, qualname=0x0) at Python/ceval.c:4166
+#32 0x00002b7e71146ede in PyEval_EvalCodeEx (_co=_co
+entry=0x2b7e70faad20, globals=globals
+entry=0x2b7e70f093f0, locals=locals
+entry=0x2b7e70f093f0, args=args
+entry=0x0, argcount=argcount
+entry=0, kws=kws
+entry=0x0, kwcount=0, defs=0x0, defcount=0, kwdefs=0x0, closure=0x0) at Python/ceval.c:4187
+#33 0x00002b7e71146f0b in PyEval_EvalCode (co=co
+entry=0x2b7e70faad20, globals=globals
+entry=0x2b7e70f093f0, locals=locals
+entry=0x2b7e70f093f0) at Python/ceval.c:731
+#34 0x00002b7e7116f1b0 in run_mod (mod=mod
+entry=0x1211970, filename=filename
+entry=0x2b7e78754030, globals=globals
+entry=0x2b7e70f093f0, locals=locals
+entry=0x2b7e70f093f0, flags=flags
+entry=0x7ffd562bfb8c, arena=arena
+entry=0x2b7e70e9b1f8) at Python/pythonrun.c:1025
+#35 0x00002b7e71171461 in PyRun_FileExFlags (fp=fp
+entry=0x116e410, filename_str=filename_str
+entry=0x2b7e78734550 "/afs/cern.ch/user/e/edursov/private/SIMULATIONS/my_FairShip/sw/slc7_x86-64/FairShip/master-local1/macro/run_simScript.py", start=start
+entry=257, globals=globals
+entry=0x2b7e70f093f0, locals=locals
+entry=0x2b7e70f093f0, closeit=closeit
+entry=1, flags=0x7ffd562bfb8c) at Python/pythonrun.c:978
+#36 0x00002b7e7117159f in PyRun_SimpleFileExFlags (fp=fp
+entry=0x116e410, filename=<optimized out>, closeit=closeit
+entry=1, flags=flags
+entry=0x7ffd562bfb8c) at Python/pythonrun.c:419
+#37 0x00002b7e71171a23 in PyRun_AnyFileExFlags (fp=fp
+entry=0x116e410, filename=<optimized out>, closeit=closeit
+entry=1, flags=flags
+entry=0x7ffd562bfb8c) at Python/pythonrun.c:81
+#38 0x00002b7e711873fc in run_file (p_cf=0x7ffd562bfb8c, filename=0x1123320 L"/afs/cern.ch/user/e/edursov/private/SIMULATIONS/my_FairShip/sw/slc7_x86-64/FairShip/master-local1/macro/run_simScript.py", fp=0x116e410) at Modules/main.c:340
+#39 Py_Main (argc=argc
+entry=14, argv=argv
+entry=0x1122010) at Modules/main.c:810
+#40 0x0000000000400afe in main (argc=14, argv=<optimized out>) at ./Programs/python.c:69
+===========================================================
+
+
+The lines below might hint at the cause of the crash.
+You may get help by asking at the ROOT forum https://root.cern/forum
+Only if you are really convinced it is a bug in ROOT then please submit a
+report at https://root.cern/bugs Please post the ENTIRE stack trace
+from above as an attachment in addition to anything else
+that might help us fixing this issue.
+===========================================================
+#9  0x00002b7ea9c89952 in FairRootFileSink::Write (this=0x9e26e90) at /home/trufsnd/SHIPBUILD/sw/SOURCES/FairRoot/v18.4.2_snd/0a8728c012/base/sink/FairRootFileSink.cxx:345
+#10 0x00002b7ea9ca9688 in FairRootManager::Write (this=0x9d0bab0) at /home/trufsnd/SHIPBUILD/sw/SOURCES/FairRoot/v18.4.2_snd/0a8728c012/base/steer/FairRootManager.cxx:400
+#11 0x00002b7ea9c7a01e in FairMCApplication::StopRun (this=0xcd65da0) at /home/trufsnd/SHIPBUILD/sw/SOURCES/FairRoot/v18.4.2_snd/0a8728c012/base/sim/FairMCApplication.cxx:782
+#12 0x00002b7ea9c775ac in FairMCApplication::GeneratePrimaries (this=0xcd65da0) at /home/trufsnd/SHIPBUILD/sw/SOURCES/FairRoot/v18.4.2_snd/0a8728c012/base/sim/FairMCApplication.cxx:1163
+#13 0x00002b7eb6e00265 in TG4PrimaryGeneratorAction::GeneratePrimaries (this=0x1c8b0790, event=0x9d800d00) at /home/trufsnd/SHIPBUILD/sw/SOURCES/GEANT4_VMC/v5-4/v5-4/source/run/src/TG4PrimaryGeneratorAction.cxx:342
+#14 0x00002b7ecf2554d9 in G4RunManager::GenerateEvent (this=0x1b1b61e0, i_event=312224) at /home/trufsnd/SHIPBUILD/sw/SOURCES/GEANT4/v10.7.2/v10.7.2/source/run/src/G4RunManager.cc:584
+#15 0x00002b7ecf254f43 in G4RunManager::ProcessOneEvent (this=0x1b1b61e0, i_event=312224) at /home/trufsnd/SHIPBUILD/sw/SOURCES/GEANT4/v10.7.2/v10.7.2/source/run/src/G4RunManager.cc:509
+#16 0x00002b7ecf254de3 in G4RunManager::DoEventLoop (this=0x1b1b61e0, n_event=312225, macroFile=0x0, n_select=-1) at /home/trufsnd/SHIPBUILD/sw/SOURCES/GEANT4/v10.7.2/v10.7.2/source/run/src/G4RunManager.cc:471
+#17 0x00002b7ecf254577 in G4RunManager::BeamOn (this=0x1b1b61e0, n_event=312225, macroFile=0x0, n_select=-1) at /home/trufsnd/SHIPBUILD/sw/SOURCES/GEANT4/v10.7.2/v10.7.2/source/run/src/G4RunManager.cc:343
+#18 0x00002b7eb6e0d594 in TG4RunManager::ProcessRun (this=0x1956f510, nofEvents=312225) at /home/trufsnd/SHIPBUILD/sw/SOURCES/GEANT4_VMC/v5-4/v5-4/source/run/src/TG4RunManager.cxx:549
+#19 0x00002b7ea9c79dc9 in FairMCApplication::RunMC (this=0xcd65da0, nofEvents=312225) at /home/trufsnd/SHIPBUILD/sw/SOURCES/FairRoot/v18.4.2_snd/0a8728c012/base/sim/FairMCApplication.cxx:461
+#20 0x00002b7e79a826b0 in WrapperCall (method=<optimized out>, nargs=1, args_=0x7ffd562bf5c0, self=0x76a6b50, result=0x0) at /home/trufsnd/SHIPBUILD/sw/SOURCES/ROOT/v6-26-02/v6-26-02/bindings/pyroot/cppyy/cppyy-backend/clingwrapper/src/clingwrapper.cxx:778
+#21 0x00002b7e7981ed86 in GILCallV (ctxt=<optimized out>, self=<optimized out>, method=<optimized out>) at /home/trufsnd/SHIPBUILD/sw/SOURCES/ROOT/v6-26-02/v6-26-02/bindings/pyroot/cppyy/CPyCppyy/src/Executors.cxx:68
+#22 CPyCppyy::(anonymous namespace)::VoidExecutor::Execute (this=<optimized out>, method=<optimized out>, self=<optimized out>, ctxt=<optimized out>) at /home/trufsnd/SHIPBUILD/sw/SOURCES/ROOT/v6-26-02/v6-26-02/bindings/pyroot/cppyy/CPyCppyy/src/Executors.cxx:410
+#23 0x00002b7e7980a679 in CPyCppyy::CPPMethod::ExecuteFast (ctxt=<optimized out>, offset=<optimized out>, self=<optimized out>, this=0x765a2d0) at /home/trufsnd/SHIPBUILD/sw/SOURCES/ROOT/v6-26-02/v6-26-02/bindings/pyroot/cppyy/CPyCppyy/src/CPPMethod.cxx:74
+#24 CPyCppyy::CPPMethod::Execute (this=0x765a2d0, self=<optimized out>, offset=<optimized out>, ctxt=<optimized out>) at /home/trufsnd/SHIPBUILD/sw/SOURCES/ROOT/v6-26-02/v6-26-02/bindings/pyroot/cppyy/CPyCppyy/src/CPPMethod.cxx:725
+#25 0x00002b7e7980ad3a in CPyCppyy::CPPMethod::Call (this=0x765a2d0, self=
+0x2b7ea85def70: 0x2b7ea99a0120, args=0x2b7ea9bcd6a0, kwds=<optimized out>, ctxt=0x7ffd562bf5a0) at /home/trufsnd/SHIPBUILD/sw/SOURCES/ROOT/v6-26-02/v6-26-02/bindings/pyroot/cppyy/CPyCppyy/src/CPPMethod.cxx:783
+#26 0x00002b7e79810ce9 in CPyCppyy::(anonymous namespace)::mp_call (pymeth=pymeth
+entry=0x2b7ea85def60, args=args
+entry=0x2b7ea9bcd6a0, kwds=kwds
+entry=0x0) at /home/trufsnd/SHIPBUILD/sw/SOURCES/ROOT/v6-26-02/v6-26-02/bindings/pyroot/cppyy/CPyCppyy/src/CPPOverload.cxx:566
+#27 0x00002b7e71092ef9 in _PyObject_FastCallDict (func=0x2b7ea85def60, args=<optimized out>, nargs=<optimized out>, kwargs=kwargs
+entry=0x0) at Objects/abstract.c:2331
+#28 0x00002b7e71093481 in _PyObject_FastCallKeywords (func=func
+entry=0x2b7ea85def60, stack=<optimized out>, nargs=nargs
+entry=1, kwnames=kwnames
+entry=0x0) at Objects/abstract.c:2496
+#29 0x00002b7e71146c8a in call_function (pp_stack=pp_stack
+entry=0x7ffd562bf850, oparg=<optimized out>, kwnames=kwnames
+entry=0x0) at Python/ceval.c:4875
+#30 0x00002b7e7114a269 in _PyEval_EvalFrameDefault (f=<optimized out>, throwflag=<optimized out>) at Python/ceval.c:3335
+#31 0x00002b7e71146986 in _PyEval_EvalCodeWithName (_co=_co
+entry=0x2b7e70faad20, globals=globals
+entry=0x2b7e70f093f0, locals=locals
+entry=0x2b7e70f093f0, args=args
+entry=0x0, argcount=argcount
+entry=0, kwnames=kwnames
+entry=0x0, kwargs=0x0, kwcount=0, kwstep=2, defs=0x0, defcount=0, kwdefs=0x0, closure=0x0, name=0x0, qualname=0x0) at Python/ceval.c:4166
+#32 0x00002b7e71146ede in PyEval_EvalCodeEx (_co=_co
+entry=0x2b7e70faad20, globals=globals
+entry=0x2b7e70f093f0, locals=locals
+entry=0x2b7e70f093f0, args=args
+entry=0x0, argcount=argcount
+entry=0, kws=kws
+entry=0x0, kwcount=0, defs=0x0, defcount=0, kwdefs=0x0, closure=0x0) at Python/ceval.c:4187
+#33 0x00002b7e71146f0b in PyEval_EvalCode (co=co
+entry=0x2b7e70faad20, globals=globals
+entry=0x2b7e70f093f0, locals=locals
+entry=0x2b7e70f093f0) at Python/ceval.c:731
+#34 0x00002b7e7116f1b0 in run_mod (mod=mod
+entry=0x1211970, filename=filename
+entry=0x2b7e78754030, globals=globals
+entry=0x2b7e70f093f0, locals=locals
+entry=0x2b7e70f093f0, flags=flags
+entry=0x7ffd562bfb8c, arena=arena
+entry=0x2b7e70e9b1f8) at Python/pythonrun.c:1025
+#35 0x00002b7e71171461 in PyRun_FileExFlags (fp=fp
+entry=0x116e410, filename_str=filename_str
+entry=0x2b7e78734550 "/afs/cern.ch/user/e/edursov/private/SIMULATIONS/my_FairShip/sw/slc7_x86-64/FairShip/master-local1/macro/run_simScript.py", start=start
+entry=257, globals=globals
+entry=0x2b7e70f093f0, locals=locals
+entry=0x2b7e70f093f0, closeit=closeit
+entry=1, flags=0x7ffd562bfb8c) at Python/pythonrun.c:978
+#36 0x00002b7e7117159f in PyRun_SimpleFileExFlags (fp=fp
+entry=0x116e410, filename=<optimized out>, closeit=closeit
+entry=1, flags=flags
+entry=0x7ffd562bfb8c) at Python/pythonrun.c:419
+#37 0x00002b7e71171a23 in PyRun_AnyFileExFlags (fp=fp
+entry=0x116e410, filename=<optimized out>, closeit=closeit
+entry=1, flags=flags
+entry=0x7ffd562bfb8c) at Python/pythonrun.c:81
+#38 0x00002b7e711873fc in run_file (p_cf=0x7ffd562bfb8c, filename=0x1123320 L"/afs/cern.ch/user/e/edursov/private/SIMULATIONS/my_FairShip/sw/slc7_x86-64/FairShip/master-local1/macro/run_simScript.py", fp=0x116e410) at Modules/main.c:340
+#39 Py_Main (argc=argc
+entry=14, argv=argv
+entry=0x1122010) at Modules/main.c:810
+#40 0x0000000000400afe in main (argc=14, argv=<optimized out>) at ./Programs/python.c:69
+===========================================================
+
+
+ *** Break *** segmentation violation
+
+
+
+===========================================================
+There was a crash.
+This is the entire stack trace of all threads:
+===========================================================
+
+Thread 6 (Thread 0x2b7eb45d5700 (LWP 614)):
+#0  0x00002b7e71505b3b in do_futex_wait.constprop () from /lib64/libpthread.so.0
+#1  0x00002b7e71505bcf in __new_sem_wait_slow.constprop.0 () from /lib64/libpthread.so.0
+#2  0x00002b7e71505c6b in sem_wait
+
+GLIBC_2.2.5 () from /lib64/libpthread.so.0
+#3  0x00002b7eb19f9c96 in XrdSysSemaphore::Wait (this=0xbe2a7e0) at /home/trufsnd/SHIPBUILD/sw/BUILD/4934bfa0a2c58d2a0b2c2ac23b8455e686fca8b7/XRootD/src/./XrdSys/XrdSysPthread.hh:453
+#4  XrdCl::SyncQueue<XrdCl::JobManager::JobHelper>::Get (this=0xbde4478) at /home/trufsnd/SHIPBUILD/sw/BUILD/4934bfa0a2c58d2a0b2c2ac23b8455e686fca8b7/XRootD/src/./XrdCl/XrdClSyncQueue.hh:66
+#5  XrdCl::JobManager::RunJobs (this=0xbde4460) at /home/trufsnd/SHIPBUILD/sw/BUILD/4934bfa0a2c58d2a0b2c2ac23b8455e686fca8b7/XRootD/src/XrdCl/XrdClJobManager.cc:151
+#6  0x00002b7eb19f9d69 in RunRunnerThread (arg=<optimized out>) at /home/trufsnd/SHIPBUILD/sw/BUILD/4934bfa0a2c58d2a0b2c2ac23b8455e686fca8b7/XRootD/src/XrdCl/XrdClJobManager.cc:34
+#7  0x00002b7e714ffea5 in start_thread () from /lib64/libpthread.so.0
+#8  0x00002b7e71f1bb0d in clone () from /lib64/libc.so.6
+
+Thread 5 (Thread 0x2b7eb43d4700 (LWP 613)):
+#0  0x00002b7e71505b3b in do_futex_wait.constprop () from /lib64/libpthread.so.0
+#1  0x00002b7e71505bcf in __new_sem_wait_slow.constprop.0 () from /lib64/libpthread.so.0
+#2  0x00002b7e71505c6b in sem_wait
+
+GLIBC_2.2.5 () from /lib64/libpthread.so.0
+#3  0x00002b7eb19f9c96 in XrdSysSemaphore::Wait (this=0xbe2a7e0) at /home/trufsnd/SHIPBUILD/sw/BUILD/4934bfa0a2c58d2a0b2c2ac23b8455e686fca8b7/XRootD/src/./XrdSys/XrdSysPthread.hh:453
+#4  XrdCl::SyncQueue<XrdCl::JobManager::JobHelper>::Get (this=0xbde4478) at /home/trufsnd/SHIPBUILD/sw/BUILD/4934bfa0a2c58d2a0b2c2ac23b8455e686fca8b7/XRootD/src/./XrdCl/XrdClSyncQueue.hh:66
+#5  XrdCl::JobManager::RunJobs (this=0xbde4460) at /home/trufsnd/SHIPBUILD/sw/BUILD/4934bfa0a2c58d2a0b2c2ac23b8455e686fca8b7/XRootD/src/XrdCl/XrdClJobManager.cc:151
+#6  0x00002b7eb19f9d69 in RunRunnerThread (arg=<optimized out>) at /home/trufsnd/SHIPBUILD/sw/BUILD/4934bfa0a2c58d2a0b2c2ac23b8455e686fca8b7/XRootD/src/XrdCl/XrdClJobManager.cc:34
+#7  0x00002b7e714ffea5 in start_thread () from /lib64/libpthread.so.0
+#8  0x00002b7e71f1bb0d in clone () from /lib64/libc.so.6
+
+Thread 4 (Thread 0x2b7eb41d3700 (LWP 612)):
+#0  0x00002b7e71505b3b in do_futex_wait.constprop () from /lib64/libpthread.so.0
+#1  0x00002b7e71505bcf in __new_sem_wait_slow.constprop.0 () from /lib64/libpthread.so.0
+#2  0x00002b7e71505c6b in sem_wait
+
+GLIBC_2.2.5 () from /lib64/libpthread.so.0
+#3  0x00002b7eb19f9c96 in XrdSysSemaphore::Wait (this=0xbe2a7e0) at /home/trufsnd/SHIPBUILD/sw/BUILD/4934bfa0a2c58d2a0b2c2ac23b8455e686fca8b7/XRootD/src/./XrdSys/XrdSysPthread.hh:453
+#4  XrdCl::SyncQueue<XrdCl::JobManager::JobHelper>::Get (this=0xbde4478) at /home/trufsnd/SHIPBUILD/sw/BUILD/4934bfa0a2c58d2a0b2c2ac23b8455e686fca8b7/XRootD/src/./XrdCl/XrdClSyncQueue.hh:66
+#5  XrdCl::JobManager::RunJobs (this=0xbde4460) at /home/trufsnd/SHIPBUILD/sw/BUILD/4934bfa0a2c58d2a0b2c2ac23b8455e686fca8b7/XRootD/src/XrdCl/XrdClJobManager.cc:151
+#6  0x00002b7eb19f9d69 in RunRunnerThread (arg=<optimized out>) at /home/trufsnd/SHIPBUILD/sw/BUILD/4934bfa0a2c58d2a0b2c2ac23b8455e686fca8b7/XRootD/src/XrdCl/XrdClJobManager.cc:34
+#7  0x00002b7e714ffea5 in start_thread () from /lib64/libpthread.so.0
+#8  0x00002b7e71f1bb0d in clone () from /lib64/libc.so.6
+
+Thread 3 (Thread 0x2b7eb3fd2700 (LWP 611)):
+#0  0x00002b7e71506e9d in nanosleep () from /lib64/libpthread.so.0
+#1  0x00002b7eb15accd8 in XrdSysTimer::Wait (mills=<optimized out>) at /home/trufsnd/SHIPBUILD/sw/BUILD/4934bfa0a2c58d2a0b2c2ac23b8455e686fca8b7/XRootD/src/XrdSys/XrdSysTimer.cc:239
+#2  0x00002b7eb1981f5d in XrdCl::TaskManager::RunTasks (this=0xbe2be60) at /home/trufsnd/SHIPBUILD/sw/BUILD/4934bfa0a2c58d2a0b2c2ac23b8455e686fca8b7/XRootD/src/XrdCl/XrdClTaskManager.cc:246
+#3  0x00002b7eb1982079 in RunRunnerThread (arg=<optimized out>) at /home/trufsnd/SHIPBUILD/sw/BUILD/4934bfa0a2c58d2a0b2c2ac23b8455e686fca8b7/XRootD/src/XrdCl/XrdClTaskManager.cc:38
+#4  0x00002b7e714ffea5 in start_thread () from /lib64/libpthread.so.0
+#5  0x00002b7e71f1bb0d in clone () from /lib64/libc.so.6
+
+Thread 2 (Thread 0x2b7eb3dd1700 (LWP 609)):
+#0  0x00002b7e71f1c0e3 in epoll_wait () from /lib64/libc.so.6
+#1  0x00002b7eb15a70b2 in XrdSys::IOEvents::PollE::Begin (this=0xb35a79c0, syncsem=<optimized out>, retcode=<optimized out>, eTxt=<optimized out>) at /home/trufsnd/SHIPBUILD/sw/BUILD/4934bfa0a2c58d2a0b2c2ac23b8455e686fca8b7/XRootD/src/./XrdSys/XrdSysIOEventsPollE.icc:212
+#2  0x00002b7eb15a3a1d in XrdSys::IOEvents::BootStrap::Start (parg=0x7ffd562baad0) at /home/trufsnd/SHIPBUILD/sw/BUILD/4934bfa0a2c58d2a0b2c2ac23b8455e686fca8b7/XRootD/src/XrdSys/XrdSysIOEvents.cc:133
+#3  0x00002b7eb15ac377 in XrdSysThread_Xeq (myargs=0x9d712720) at /home/trufsnd/SHIPBUILD/sw/BUILD/4934bfa0a2c58d2a0b2c2ac23b8455e686fca8b7/XRootD/src/XrdSys/XrdSysPthread.cc:86
+#4  0x00002b7e714ffea5 in start_thread () from /lib64/libpthread.so.0
+#5  0x00002b7e71f1bb0d in clone () from /lib64/libc.so.6
+
+Thread 1 (Thread 0x2b7e70e47dc0 (LWP 119)):
+#0  0x00002b7e71ee2659 in waitpid () from /lib64/libc.so.6
+#1  0x00002b7e71e5ff62 in do_system () from /lib64/libc.so.6
+#2  0x00002b7e71e60311 in system () from /lib64/libc.so.6
+#3  0x00002b7e79f8bced in TUnixSystem::Exec (shellcmd=<optimized out>, this=0x11f93d0) at /home/trufsnd/SHIPBUILD/sw/SOURCES/ROOT/v6-26-02/v6-26-02/core/unix/src/TUnixSystem.cxx:2108
+#4  TUnixSystem::StackTrace (this=0x11f93d0) at /home/trufsnd/SHIPBUILD/sw/SOURCES/ROOT/v6-26-02/v6-26-02/core/unix/src/TUnixSystem.cxx:2399
+#5  0x00002b7e79a82e28 in (anonymous namespace)::do_trace (sig=1) at /home/trufsnd/SHIPBUILD/sw/SOURCES/ROOT/v6-26-02/v6-26-02/bindings/pyroot/cppyy/cppyy-backend/clingwrapper/src/clingwrapper.cxx:182
+#6  (anonymous namespace)::TExceptionHandlerImp::HandleException (this=<optimized out>, sig=1) at /home/trufsnd/SHIPBUILD/sw/SOURCES/ROOT/v6-26-02/v6-26-02/bindings/pyroot/cppyy/cppyy-backend/clingwrapper/src/clingwrapper.cxx:201
+#7  0x00002b7e79f8e739 in TUnixSystem::DispatchSignals (this=0x11f93d0, sig=kSigSegmentationViolation) at /home/trufsnd/SHIPBUILD/sw/SOURCES/ROOT/v6-26-02/v6-26-02/core/unix/src/TUnixSystem.cxx:3614
+#8  <signal handler called>
+#9  0x00002b7ea9c89952 in FairRootFileSink::Write (this=0x9e26e90) at /home/trufsnd/SHIPBUILD/sw/SOURCES/FairRoot/v18.4.2_snd/0a8728c012/base/sink/FairRootFileSink.cxx:345
+#10 0x00002b7ea9ca9688 in FairRootManager::Write (this=0x9d0bab0) at /home/trufsnd/SHIPBUILD/sw/SOURCES/FairRoot/v18.4.2_snd/0a8728c012/base/steer/FairRootManager.cxx:400
+#11 0x00002b7ea9c7a01e in FairMCApplication::StopRun (this=0xcd65da0) at /home/trufsnd/SHIPBUILD/sw/SOURCES/FairRoot/v18.4.2_snd/0a8728c012/base/sim/FairMCApplication.cxx:782
+#12 0x00002b7ea9c775ac in FairMCApplication::GeneratePrimaries (this=0xcd65da0) at /home/trufsnd/SHIPBUILD/sw/SOURCES/FairRoot/v18.4.2_snd/0a8728c012/base/sim/FairMCApplication.cxx:1163
+#13 0x00002b7eb6e00265 in TG4PrimaryGeneratorAction::GeneratePrimaries (this=0x1c8b0790, event=0x9d800d00) at /home/trufsnd/SHIPBUILD/sw/SOURCES/GEANT4_VMC/v5-4/v5-4/source/run/src/TG4PrimaryGeneratorAction.cxx:342
+#14 0x00002b7ecf2554d9 in G4RunManager::GenerateEvent (this=0x1b1b61e0, i_event=312224) at /home/trufsnd/SHIPBUILD/sw/SOURCES/GEANT4/v10.7.2/v10.7.2/source/run/src/G4RunManager.cc:584
+#15 0x00002b7ecf254f43 in G4RunManager::ProcessOneEvent (this=0x1b1b61e0, i_event=312224) at /home/trufsnd/SHIPBUILD/sw/SOURCES/GEANT4/v10.7.2/v10.7.2/source/run/src/G4RunManager.cc:509
+#16 0x00002b7ecf254de3 in G4RunManager::DoEventLoop (this=0x1b1b61e0, n_event=312225, macroFile=0x0, n_select=-1) at /home/trufsnd/SHIPBUILD/sw/SOURCES/GEANT4/v10.7.2/v10.7.2/source/run/src/G4RunManager.cc:471
+#17 0x00002b7ecf254577 in G4RunManager::BeamOn (this=0x1b1b61e0, n_event=312225, macroFile=0x0, n_select=-1) at /home/trufsnd/SHIPBUILD/sw/SOURCES/GEANT4/v10.7.2/v10.7.2/source/run/src/G4RunManager.cc:343
+#18 0x00002b7eb6e0d594 in TG4RunManager::ProcessRun (this=0x1956f510, nofEvents=312225) at /home/trufsnd/SHIPBUILD/sw/SOURCES/GEANT4_VMC/v5-4/v5-4/source/run/src/TG4RunManager.cxx:549
+#19 0x00002b7ea9c79dc9 in FairMCApplication::RunMC (this=0xcd65da0, nofEvents=312225) at /home/trufsnd/SHIPBUILD/sw/SOURCES/FairRoot/v18.4.2_snd/0a8728c012/base/sim/FairMCApplication.cxx:461
+#20 0x00002b7e79a826b0 in WrapperCall (method=<optimized out>, nargs=1, args_=0x7ffd562bf5c0, self=0x76a6b50, result=0x0) at /home/trufsnd/SHIPBUILD/sw/SOURCES/ROOT/v6-26-02/v6-26-02/bindings/pyroot/cppyy/cppyy-backend/clingwrapper/src/clingwrapper.cxx:778
+#21 0x00002b7e7981ed86 in GILCallV (ctxt=<optimized out>, self=<optimized out>, method=<optimized out>) at /home/trufsnd/SHIPBUILD/sw/SOURCES/ROOT/v6-26-02/v6-26-02/bindings/pyroot/cppyy/CPyCppyy/src/Executors.cxx:68
+#22 CPyCppyy::(anonymous namespace)::VoidExecutor::Execute (this=<optimized out>, method=<optimized out>, self=<optimized out>, ctxt=<optimized out>) at /home/trufsnd/SHIPBUILD/sw/SOURCES/ROOT/v6-26-02/v6-26-02/bindings/pyroot/cppyy/CPyCppyy/src/Executors.cxx:410
+#23 0x00002b7e7980a679 in CPyCppyy::CPPMethod::ExecuteFast (ctxt=<optimized out>, offset=<optimized out>, self=<optimized out>, this=0x765a2d0) at /home/trufsnd/SHIPBUILD/sw/SOURCES/ROOT/v6-26-02/v6-26-02/bindings/pyroot/cppyy/CPyCppyy/src/CPPMethod.cxx:74
+#24 CPyCppyy::CPPMethod::Execute (this=0x765a2d0, self=<optimized out>, offset=<optimized out>, ctxt=<optimized out>) at /home/trufsnd/SHIPBUILD/sw/SOURCES/ROOT/v6-26-02/v6-26-02/bindings/pyroot/cppyy/CPyCppyy/src/CPPMethod.cxx:725
+#25 0x00002b7e7980ad3a in CPyCppyy::CPPMethod::Call (this=0x765a2d0, self=
+0x2b7ea85def70: 0x2b7ea99a0120, args=0x2b7ea9bcd6a0, kwds=<optimized out>, ctxt=0x7ffd562bf5a0) at /home/trufsnd/SHIPBUILD/sw/SOURCES/ROOT/v6-26-02/v6-26-02/bindings/pyroot/cppyy/CPyCppyy/src/CPPMethod.cxx:783
+#26 0x00002b7e79810ce9 in CPyCppyy::(anonymous namespace)::mp_call (pymeth=pymeth
+entry=0x2b7ea85def60, args=args
+entry=0x2b7ea9bcd6a0, kwds=kwds
+entry=0x0) at /home/trufsnd/SHIPBUILD/sw/SOURCES/ROOT/v6-26-02/v6-26-02/bindings/pyroot/cppyy/CPyCppyy/src/CPPOverload.cxx:566
+#27 0x00002b7e71092ef9 in _PyObject_FastCallDict (func=0x2b7ea85def60, args=<optimized out>, nargs=<optimized out>, kwargs=kwargs
+entry=0x0) at Objects/abstract.c:2331
+#28 0x00002b7e71093481 in _PyObject_FastCallKeywords (func=func
+entry=0x2b7ea85def60, stack=<optimized out>, nargs=nargs
+entry=1, kwnames=kwnames
+entry=0x0) at Objects/abstract.c:2496
+#29 0x00002b7e71146c8a in call_function (pp_stack=pp_stack
+entry=0x7ffd562bf850, oparg=<optimized out>, kwnames=kwnames
+entry=0x0) at Python/ceval.c:4875
+#30 0x00002b7e7114a269 in _PyEval_EvalFrameDefault (f=<optimized out>, throwflag=<optimized out>) at Python/ceval.c:3335
+#31 0x00002b7e71146986 in _PyEval_EvalCodeWithName (_co=_co
+entry=0x2b7e70faad20, globals=globals
+entry=0x2b7e70f093f0, locals=locals
+entry=0x2b7e70f093f0, args=args
+entry=0x0, argcount=argcount
+entry=0, kwnames=kwnames
+entry=0x0, kwargs=0x0, kwcount=0, kwstep=2, defs=0x0, defcount=0, kwdefs=0x0, closure=0x0, name=0x0, qualname=0x0) at Python/ceval.c:4166
+#32 0x00002b7e71146ede in PyEval_EvalCodeEx (_co=_co
+entry=0x2b7e70faad20, globals=globals
+entry=0x2b7e70f093f0, locals=locals
+entry=0x2b7e70f093f0, args=args
+entry=0x0, argcount=argcount
+entry=0, kws=kws
+entry=0x0, kwcount=0, defs=0x0, defcount=0, kwdefs=0x0, closure=0x0) at Python/ceval.c:4187
+#33 0x00002b7e71146f0b in PyEval_EvalCode (co=co
+entry=0x2b7e70faad20, globals=globals
+entry=0x2b7e70f093f0, locals=locals
+entry=0x2b7e70f093f0) at Python/ceval.c:731
+#34 0x00002b7e7116f1b0 in run_mod (mod=mod
+entry=0x1211970, filename=filename
+entry=0x2b7e78754030, globals=globals
+entry=0x2b7e70f093f0, locals=locals
+entry=0x2b7e70f093f0, flags=flags
+entry=0x7ffd562bfb8c, arena=arena
+entry=0x2b7e70e9b1f8) at Python/pythonrun.c:1025
+#35 0x00002b7e71171461 in PyRun_FileExFlags (fp=fp
+entry=0x116e410, filename_str=filename_str
+entry=0x2b7e78734550 "/afs/cern.ch/user/e/edursov/private/SIMULATIONS/my_FairShip/sw/slc7_x86-64/FairShip/master-local1/macro/run_simScript.py", start=start
+entry=257, globals=globals
+entry=0x2b7e70f093f0, locals=locals
+entry=0x2b7e70f093f0, closeit=closeit
+entry=1, flags=0x7ffd562bfb8c) at Python/pythonrun.c:978
+#36 0x00002b7e7117159f in PyRun_SimpleFileExFlags (fp=fp
+entry=0x116e410, filename=<optimized out>, closeit=closeit
+entry=1, flags=flags
+entry=0x7ffd562bfb8c) at Python/pythonrun.c:419
+#37 0x00002b7e71171a23 in PyRun_AnyFileExFlags (fp=fp
+entry=0x116e410, filename=<optimized out>, closeit=closeit
+entry=1, flags=flags
+entry=0x7ffd562bfb8c) at Python/pythonrun.c:81
+#38 0x00002b7e711873fc in run_file (p_cf=0x7ffd562bfb8c, filename=0x1123320 L"/afs/cern.ch/user/e/edursov/private/SIMULATIONS/my_FairShip/sw/slc7_x86-64/FairShip/master-local1/macro/run_simScript.py", fp=0x116e410) at Modules/main.c:340
+#39 Py_Main (argc=argc
+entry=14, argv=argv
+entry=0x1122010) at Modules/main.c:810
+#40 0x0000000000400afe in main (argc=14, argv=<optimized out>) at ./Programs/python.c:69
+===========================================================
+
+
+The lines below might hint at the cause of the crash.
+You may get help by asking at the ROOT forum https://root.cern/forum
+Only if you are really convinced it is a bug in ROOT then please submit a
+report at https://root.cern/bugs Please post the ENTIRE stack trace
+from above as an attachment in addition to anything else
+that might help us fixing this issue.
+===========================================================
+#9  0x00002b7ea9c89952 in FairRootFileSink::Write (this=0x9e26e90) at /home/trufsnd/SHIPBUILD/sw/SOURCES/FairRoot/v18.4.2_snd/0a8728c012/base/sink/FairRootFileSink.cxx:345
+#10 0x00002b7ea9ca9688 in FairRootManager::Write (this=0x9d0bab0) at /home/trufsnd/SHIPBUILD/sw/SOURCES/FairRoot/v18.4.2_snd/0a8728c012/base/steer/FairRootManager.cxx:400
+#11 0x00002b7ea9c7a01e in FairMCApplication::StopRun (this=0xcd65da0) at /home/trufsnd/SHIPBUILD/sw/SOURCES/FairRoot/v18.4.2_snd/0a8728c012/base/sim/FairMCApplication.cxx:782
+#12 0x00002b7ea9c775ac in FairMCApplication::GeneratePrimaries (this=0xcd65da0) at /home/trufsnd/SHIPBUILD/sw/SOURCES/FairRoot/v18.4.2_snd/0a8728c012/base/sim/FairMCApplication.cxx:1163
+#13 0x00002b7eb6e00265 in TG4PrimaryGeneratorAction::GeneratePrimaries (this=0x1c8b0790, event=0x9d800d00) at /home/trufsnd/SHIPBUILD/sw/SOURCES/GEANT4_VMC/v5-4/v5-4/source/run/src/TG4PrimaryGeneratorAction.cxx:342
+#14 0x00002b7ecf2554d9 in G4RunManager::GenerateEvent (this=0x1b1b61e0, i_event=312224) at /home/trufsnd/SHIPBUILD/sw/SOURCES/GEANT4/v10.7.2/v10.7.2/source/run/src/G4RunManager.cc:584
+#15 0x00002b7ecf254f43 in G4RunManager::ProcessOneEvent (this=0x1b1b61e0, i_event=312224) at /home/trufsnd/SHIPBUILD/sw/SOURCES/GEANT4/v10.7.2/v10.7.2/source/run/src/G4RunManager.cc:509
+#16 0x00002b7ecf254de3 in G4RunManager::DoEventLoop (this=0x1b1b61e0, n_event=312225, macroFile=0x0, n_select=-1) at /home/trufsnd/SHIPBUILD/sw/SOURCES/GEANT4/v10.7.2/v10.7.2/source/run/src/G4RunManager.cc:471
+#17 0x00002b7ecf254577 in G4RunManager::BeamOn (this=0x1b1b61e0, n_event=312225, macroFile=0x0, n_select=-1) at /home/trufsnd/SHIPBUILD/sw/SOURCES/GEANT4/v10.7.2/v10.7.2/source/run/src/G4RunManager.cc:343
+#18 0x00002b7eb6e0d594 in TG4RunManager::ProcessRun (this=0x1956f510, nofEvents=312225) at /home/trufsnd/SHIPBUILD/sw/SOURCES/GEANT4_VMC/v5-4/v5-4/source/run/src/TG4RunManager.cxx:549
+#19 0x00002b7ea9c79dc9 in FairMCApplication::RunMC (this=0xcd65da0, nofEvents=312225) at /home/trufsnd/SHIPBUILD/sw/SOURCES/FairRoot/v18.4.2_snd/0a8728c012/base/sim/FairMCApplication.cxx:461
+#20 0x00002b7e79a826b0 in WrapperCall (method=<optimized out>, nargs=1, args_=0x7ffd562bf5c0, self=0x76a6b50, result=0x0) at /home/trufsnd/SHIPBUILD/sw/SOURCES/ROOT/v6-26-02/v6-26-02/bindings/pyroot/cppyy/cppyy-backend/clingwrapper/src/clingwrapper.cxx:778
+#21 0x00002b7e7981ed86 in GILCallV (ctxt=<optimized out>, self=<optimized out>, method=<optimized out>) at /home/trufsnd/SHIPBUILD/sw/SOURCES/ROOT/v6-26-02/v6-26-02/bindings/pyroot/cppyy/CPyCppyy/src/Executors.cxx:68
+#22 CPyCppyy::(anonymous namespace)::VoidExecutor::Execute (this=<optimized out>, method=<optimized out>, self=<optimized out>, ctxt=<optimized out>) at /home/trufsnd/SHIPBUILD/sw/SOURCES/ROOT/v6-26-02/v6-26-02/bindings/pyroot/cppyy/CPyCppyy/src/Executors.cxx:410
+#23 0x00002b7e7980a679 in CPyCppyy::CPPMethod::ExecuteFast (ctxt=<optimized out>, offset=<optimized out>, self=<optimized out>, this=0x765a2d0) at /home/trufsnd/SHIPBUILD/sw/SOURCES/ROOT/v6-26-02/v6-26-02/bindings/pyroot/cppyy/CPyCppyy/src/CPPMethod.cxx:74
+#24 CPyCppyy::CPPMethod::Execute (this=0x765a2d0, self=<optimized out>, offset=<optimized out>, ctxt=<optimized out>) at /home/trufsnd/SHIPBUILD/sw/SOURCES/ROOT/v6-26-02/v6-26-02/bindings/pyroot/cppyy/CPyCppyy/src/CPPMethod.cxx:725
+#25 0x00002b7e7980ad3a in CPyCppyy::CPPMethod::Call (this=0x765a2d0, self=
+0x2b7ea85def70: 0x2b7ea99a0120, args=0x2b7ea9bcd6a0, kwds=<optimized out>, ctxt=0x7ffd562bf5a0) at /home/trufsnd/SHIPBUILD/sw/SOURCES/ROOT/v6-26-02/v6-26-02/bindings/pyroot/cppyy/CPyCppyy/src/CPPMethod.cxx:783
+#26 0x00002b7e79810ce9 in CPyCppyy::(anonymous namespace)::mp_call (pymeth=pymeth
+entry=0x2b7ea85def60, args=args
+entry=0x2b7ea9bcd6a0, kwds=kwds
+entry=0x0) at /home/trufsnd/SHIPBUILD/sw/SOURCES/ROOT/v6-26-02/v6-26-02/bindings/pyroot/cppyy/CPyCppyy/src/CPPOverload.cxx:566
+#27 0x00002b7e71092ef9 in _PyObject_FastCallDict (func=0x2b7ea85def60, args=<optimized out>, nargs=<optimized out>, kwargs=kwargs
+entry=0x0) at Objects/abstract.c:2331
+#28 0x00002b7e71093481 in _PyObject_FastCallKeywords (func=func
+entry=0x2b7ea85def60, stack=<optimized out>, nargs=nargs
+entry=1, kwnames=kwnames
+entry=0x0) at Objects/abstract.c:2496
+#29 0x00002b7e71146c8a in call_function (pp_stack=pp_stack
+entry=0x7ffd562bf850, oparg=<optimized out>, kwnames=kwnames
+entry=0x0) at Python/ceval.c:4875
+#30 0x00002b7e7114a269 in _PyEval_EvalFrameDefault (f=<optimized out>, throwflag=<optimized out>) at Python/ceval.c:3335
+#31 0x00002b7e71146986 in _PyEval_EvalCodeWithName (_co=_co
+entry=0x2b7e70faad20, globals=globals
+entry=0x2b7e70f093f0, locals=locals
+entry=0x2b7e70f093f0, args=args
+entry=0x0, argcount=argcount
+entry=0, kwnames=kwnames
+entry=0x0, kwargs=0x0, kwcount=0, kwstep=2, defs=0x0, defcount=0, kwdefs=0x0, closure=0x0, name=0x0, qualname=0x0) at Python/ceval.c:4166
+#32 0x00002b7e71146ede in PyEval_EvalCodeEx (_co=_co
+entry=0x2b7e70faad20, globals=globals
+entry=0x2b7e70f093f0, locals=locals
+entry=0x2b7e70f093f0, args=args
+entry=0x0, argcount=argcount
+entry=0, kws=kws
+entry=0x0, kwcount=0, defs=0x0, defcount=0, kwdefs=0x0, closure=0x0) at Python/ceval.c:4187
+#33 0x00002b7e71146f0b in PyEval_EvalCode (co=co
+entry=0x2b7e70faad20, globals=globals
+entry=0x2b7e70f093f0, locals=locals
+entry=0x2b7e70f093f0) at Python/ceval.c:731
+#34 0x00002b7e7116f1b0 in run_mod (mod=mod
+entry=0x1211970, filename=filename
+entry=0x2b7e78754030, globals=globals
+entry=0x2b7e70f093f0, locals=locals
+entry=0x2b7e70f093f0, flags=flags
+entry=0x7ffd562bfb8c, arena=arena
+entry=0x2b7e70e9b1f8) at Python/pythonrun.c:1025
+#35 0x00002b7e71171461 in PyRun_FileExFlags (fp=fp
+entry=0x116e410, filename_str=filename_str
+entry=0x2b7e78734550 "/afs/cern.ch/user/e/edursov/private/SIMULATIONS/my_FairShip/sw/slc7_x86-64/FairShip/master-local1/macro/run_simScript.py", start=start
+entry=257, globals=globals
+entry=0x2b7e70f093f0, locals=locals
+entry=0x2b7e70f093f0, closeit=closeit
+entry=1, flags=0x7ffd562bfb8c) at Python/pythonrun.c:978
+#36 0x00002b7e7117159f in PyRun_SimpleFileExFlags (fp=fp
+entry=0x116e410, filename=<optimized out>, closeit=closeit
+entry=1, flags=flags
+entry=0x7ffd562bfb8c) at Python/pythonrun.c:419
+#37 0x00002b7e71171a23 in PyRun_AnyFileExFlags (fp=fp
+entry=0x116e410, filename=<optimized out>, closeit=closeit
+entry=1, flags=flags
+entry=0x7ffd562bfb8c) at Python/pythonrun.c:81
+#38 0x00002b7e711873fc in run_file (p_cf=0x7ffd562bfb8c, filename=0x1123320 L"/afs/cern.ch/user/e/edursov/private/SIMULATIONS/my_FairShip/sw/slc7_x86-64/FairShip/master-local1/macro/run_simScript.py", fp=0x116e410) at Modules/main.c:340
+#39 Py_Main (argc=argc
+entry=14, argv=argv
+entry=0x1122010) at Modules/main.c:810
+#40 0x0000000000400afe in main (argc=14, argv=<optimized out>) at ./Programs/python.c:69
+===========================================================
+
+
++ xrdcp ship.conical.MuonBack-TGeant4.root root://eospublic.cern.ch//eos/experiment/ship/user/edursov/optimized_ecn3_spill_snd_scor_planes_fixed_fields_23102023/13/20/ship.conical.MuonBack-TGeant4.root
+[8MB/27.64MB][ 28%][==============>                                   ][8MB/s]  [27.64MB/27.64MB][100%][==================================================][27.64MB/s]  [27.64MB/27.64MB][100%][==================================================][27.64MB/s]  
++ '[' 20 -eq 1 ']'

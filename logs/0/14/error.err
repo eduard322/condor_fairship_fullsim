@@ -1,0 +1,74 @@
++ echo 'Starting script.'
++ DIR=optimized_ecn3_spill_snd_scor_planes_fixed_fields_23102023
++ ProcId=14
++ NJOBS=20
++ LSB_JOBINDEX=15
++ MUONS=/eos/experiment/ship/data/Mbias/background-prod-2018/pythia8_Geant4_10.0_withCharmandBeauty16000_mu.root
++ NTOTAL=6242698
++ SUB=16
++ GEOFILE=combi.root
++ MUSHIELD=8
++ N=312134
++ FIRST=4369876
++ eos stat /eos/experiment/ship/user/edursov/optimized_ecn3_spill_snd_scor_planes_fixed_fields_23102023/16/15/ship.conical.MuonBack-TGeant4.root
+error: failed to stat /eos/experiment/ship/user/edursov/optimized_ecn3_spill_snd_scor_planes_fixed_fields_23102023/16/15/ship.conical.MuonBack-TGeant4.root
++ python /afs/cern.ch/user/e/edursov/private/SIMULATIONS/my_FairShip/sw/slc7_x86-64/FairShip/master-local1/macro/run_simScript.py --muShieldDesign 8 --MuonBack --nEvents 312134 --firstEvent 4369876 -f /eos/experiment/ship/data/Mbias/background-prod-2018/pythia8_Geant4_10.0_withCharmandBeauty16000_mu.root --FastMuon -g /afs/cern.ch/user/e/edursov/private/SIMULATIONS/my_FairShip/muon/github_transport/run_processing/geofiles/combi.root
+Error in <TSystem::ExpandFileName>: input: $HOME/.root.mimes, output: $HOME/.root.mimes
+Info in <EmulsionMagnet::Chosen TP Design (0 no, 1 yes) >:  3
+Info in <Target::SetDetectorDesign>:  to 3
+Info in <ecal::ecal>: Geometry is read from file ecal_rect5x10m2.geoz3615.2000000000003.geo.
+Info in <ecal::ecal>: Size of cell of type 2 is 5.970000 cm.
+Info in <hcal::hcal>: Geometry is read from file hcal_rect.geoz3715.2000000000003.geo.
+Info in <hcal::hcal>: Number of modules is 924, lightmap none
+Info in <hcal::hcal>: Size of cell of type 22 is 23.959999 cm.
+Info in <TGeoManager::TGeoManager>: Geometry FAIRGeom, FAIR geometry created
+Info in <TGeoManager::SetTopVolume>: Top volume is cave. Master volume is cave
+Info in <TGeoNavigator::BuildCache>: --- Maximum geometry depth set to 100
+Info in <TGeoManager::SetVisLevel>: Automatic visible depth disabled
+Info in <TGeoManager::SetVisLevel>: Automatic visible depth disabled
+Info in <ecal::InitMedia>: Initializing media.
+Info in <hcal::InitMedia>: Initializing media.
+Info in <TGeoManager::CheckGeometry>: Fixing runtime shapes...
+Info in <TGeoManager::CheckGeometry>: ...Nothing to fix
+Info in <TGeoManager::CloseGeometry>: Counting nodes...
+Info in <TGeoManager::Voxelize>: Voxelizing...
+Info in <TGeoManager::CloseGeometry>: Building cache...
+Info in <TGeoManager::CountLevels>: max level = 6, max placements = 2000
+Info in <TGeoManager::CloseGeometry>: 8347127 nodes/ 1268 volume UID's in FAIR geometry
+Info in <TGeoManager::CloseGeometry>: ----------------modeler ready----------------
+Info in <TObject::SetNavigator>: TG4RootNavigator created and registered to G4TransportationManager
+Info in <TObject::Initialize>: Creating G4 hierarchy ...
+Info in <TGeoManager::ConvertReflections>: Converting reflections in: FAIRGeom - FAIR geometry ...
+Info in <TGeoManager::ConvertReflections>: Done
+Info in <TObject::ConnectToG4>: ROOT detector construction class connected to G4RunManager
+++++  TG4Warning:  ++++
+    TG4SDServices::GetVolumeID:
+    Unknown Volume Id for volRpc
++++++++++++++++++++++++
+
+++++  TG4Warning:  ++++
+    TG4SDServices::GetVolumeID:
+    Unknown Volume Id for TT_scifimat_hor
++++++++++++++++++++++++
+
+++++  TG4Warning:  ++++
+    TG4SDServices::GetVolumeID:
+    Unknown Volume Id for TT_scifimat_vert
++++++++++++++++++++++++
+
+++++  TG4Warning:  ++++
+    TG4SDServices::GetVolumeID:
+    Unknown Volume Id for HPT_scifimat_hor
++++++++++++++++++++++++
+
+++++  TG4Warning:  ++++
+    TG4SDServices::GetVolumeID:
+    Unknown Volume Id for HPT_scifimat_vert
++++++++++++++++++++++++
+
+Info in <TCanvas::Print>: png file Bzx.png has been created
+Info in <TCanvas::Print>: png file Bzy.png has been created
+TParticle::SetPdgCode:0: RuntimeWarning: PDG code 14122 unknown from TDatabasePDG
++ xrdcp ship.conical.MuonBack-TGeant4.root root://eospublic.cern.ch//eos/experiment/ship/user/edursov/optimized_ecn3_spill_snd_scor_planes_fixed_fields_23102023/16/15/ship.conical.MuonBack-TGeant4.root
+[3.585MB/3.585MB][100%][==================================================][3.585MB/s]  [3.585MB/3.585MB][100%][==================================================][3.585MB/s]  
++ '[' 15 -eq 1 ']'

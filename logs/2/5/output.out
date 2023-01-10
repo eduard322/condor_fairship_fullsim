@@ -1,0 +1,17 @@
+/cvmfs/ship.cern.ch/SHiP-2022/May/alibuild/alibuild_helpers /pool/condor/dir_15915
+/pool/condor/dir_15915
+Starting script.
+OBJ: TGeoNodeMatrix	Magn1_MagRetR_1	
+OBJ: TGeoNodeMatrix	Magn1_MagTopLeft_1	
+OBJ: TGeoNodeMatrix	Magn2_MagRetR_1	
+OBJ: TGeoNodeMatrix	Magn2_MagTopLeft_1	
+OBJ: TGeoNodeMatrix	Magn3_MagRetR_1	
+OBJ: TGeoNodeMatrix	Magn3_MagTopLeft_1	
+OBJ: TGeoNodeMatrix	Magn4_MagRetR_1	
+OBJ: TGeoNodeMatrix	Magn4_MagTopLeft_1	
+OBJ: TGeoNodeMatrix	Magn5_MagRetR_1	
+OBJ: TGeoNodeMatrix	Magn5_MagTopLeft_1	
+OBJ: TGeoNodeMatrix	Magn6_MagRetR_1	
+OBJ: TGeoNodeMatrix	Magn6_MagTopLeft_1	
+OBJ: TGeoNodeMatrix	Magn7_MagRetR_1	
+OBJ: TGeoNodeMatrix	Magn7_MagTopLeft_1	

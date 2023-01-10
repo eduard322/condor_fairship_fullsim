@@ -24,7 +24,7 @@ if eos stat "$EOS_PUBLIC"/"$DIR"/"$SUB"/"$LSB_JOBINDEX"/ship.conical.MuonBack-TG
 else
 
 
-	python "$FAIRSHIP"/macro/run_simScript.py --muShieldDesign $MUSHIELD --MuonBack --nEvents $N --firstEvent $FIRST -f $MUONS --FastMuon -g geofiles/$GEOFILE 	
+	python "$FAIRSHIP"/macro/run_simScript.py --muShieldDesign $MUSHIELD --MuonBack --nEvents $N --firstEvent $FIRST -f $MUONS --FastMuon -g $CONDOR_FOLDER/geofiles/$GEOFILE 	
 	xrdcp ship.conical.MuonBack-TGeant4.root root://eospublic.cern.ch/"$EOS_PUBLIC"/"$DIR"/"$SUB"/"$LSB_JOBINDEX"/ship.conical.MuonBack-TGeant4.root
 	if [ "$LSB_JOBINDEX" -eq 1 ]; then
 	xrdcp geofile_full.conical.MuonBack-TGeant4.root\
