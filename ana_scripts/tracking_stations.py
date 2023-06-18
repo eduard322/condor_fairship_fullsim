@@ -50,7 +50,8 @@ def main():
 
     outer_path = "/".join([i for i in args.inputfile.split("/")[:-2]])
     #print(outer_path)
-    geoFile = find_file("geo*", outer_path)[0]
+    #geoFile = find_file("geo*", outer_path)[0]
+    geoFile = outer_path + "/geofile_full.conical.MuonBack-TGeant4.root"
     shield_zx, shield_zy = muon_shield(geoFile)
     shield_y = shield_zy['y'][-4]+10
     shield_x = shield_zx['x'][-4]+10

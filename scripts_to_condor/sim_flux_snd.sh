@@ -21,9 +21,14 @@ FIRST=$(((NTOTAL/NJOBS)*(LSB_JOBINDEX-1)))
 python $CONDOR_FOLDER/ana_scripts/sensitive_planes.py root://eospublic.cern.ch/"$EOS_PUBLIC"/"$DIR"/"$SUB"/"$LSB_JOBINDEX"/ship.conical.MuonBack-TGeant4.root
 
 
-#xrdcp energy_filtered_keys_sco_0Point root://eosuser.cern.ch/"$EOS_DATA"/"$DIR"/"$SUB"/"$LSB_JOBINDEX"/energy_filtered_keys_sco_0Point
-#xrdcp energy_filtered_keys_sco_1Point root://eosuser.cern.ch/"$EOS_DATA"/"$DIR"/"$SUB"/"$LSB_JOBINDEX"/energy_filtered_keys_sco_1Point
-#xrdcp energy_filtered_keys_sco_2Point root://eosuser.cern.ch/"$EOS_DATA"/"$DIR"/"$SUB"/"$LSB_JOBINDEX"/energy_filtered_keys_sco_2Point
+# xrdcp energy_filtered_keys_sco_0Point root://eosuser.cern.ch/"$EOS_DATA"/"$DIR"/"$SUB"/"$LSB_JOBINDEX"/energy_filtered_keys_sco_0Point
+# xrdcp energy_filtered_keys_sco_1Point root://eosuser.cern.ch/"$EOS_DATA"/"$DIR"/"$SUB"/"$LSB_JOBINDEX"/energy_filtered_keys_sco_1Point
+# xrdcp energy_filtered_keys_sco_2Point root://eosuser.cern.ch/"$EOS_DATA"/"$DIR"/"$SUB"/"$LSB_JOBINDEX"/energy_filtered_keys_sco_2Point
 xrdcp output_snd_planes_0.root root://eosuser.cern.ch/"$EOS_DATA"/"$DIR"/"$SUB"/"$LSB_JOBINDEX"/output_snd_planes_0.root
 xrdcp output_snd_planes_1.root root://eosuser.cern.ch/"$EOS_DATA"/"$DIR"/"$SUB"/"$LSB_JOBINDEX"/output_snd_planes_1.root
 xrdcp output_snd_planes_2.root root://eosuser.cern.ch/"$EOS_DATA"/"$DIR"/"$SUB"/"$LSB_JOBINDEX"/output_snd_planes_2.root
+
+
+# xrdcp output_snd_planes_0_check.root root://eosuser.cern.ch/"$EOS_DATA"/"$DIR"/"$SUB"/"$LSB_JOBINDEX"/ooutput_snd_planes_0_check.root
+# xrdcp output_snd_planes_1_check.root root://eosuser.cern.ch/"$EOS_DATA"/"$DIR"/"$SUB"/"$LSB_JOBINDEX"/output_snd_planes_1_check.root
+# xrdcp output_snd_planes_2_check.root root://eosuser.cern.ch/"$EOS_DATA"/"$DIR"/"$SUB"/"$LSB_JOBINDEX"/output_snd_planes_2_check.root

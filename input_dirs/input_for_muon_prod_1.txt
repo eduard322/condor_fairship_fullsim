@@ -1,1 +1,1 @@
-/eos/experiment/ship/data/Mbias/background-prod-2018/pythia8_Geant4_10.0_withCharmandBeauty10000_mu.root, 2000, 0
+/eos/experiment/ship/data/Mbias/background-prod-2018/pythia8_Geant4_10.0_withCharmandBeauty10000_mu.root, 1000, 0

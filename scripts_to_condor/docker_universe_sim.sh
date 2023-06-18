@@ -24,6 +24,6 @@ FIRST=$(((NTOTAL/NJOBS)*(LSB_JOBINDEX-1)))
 /usr/local/bin/alienv -w /sw setenv  FairShip/latest  -c /bin/bash  -c 'xrdcp ship.conical.MuonBack-TGeant4.root root://eospublic.cern.ch/'"$EOS_PUBLIC"'/'"$DIR"'/'"$SUB"'/'"$LSB_JOBINDEX"'/ship.conical.MuonBack-TGeant4.root'
 /usr/local/bin/alienv -w /sw setenv  FairShip/latest  -c /bin/bash  -c 'xrdcp *.csv root://eospublic.cern.ch/'"$EOS_PUBLIC"'/'"$DIR"'/'"$SUB"'/'"$LSB_JOBINDEX"'/output.csv'
 if [ "$LSB_JOBINDEX" -eq 1 ]; then
-/usr/local/bin/alienv -w /sw setenv  FairShip/latest  -c /bin/bash  -c 'xrdcp geofile_full.conical.MuonBack-TGeant4.root root://eospublic.cern.ch/'"$EOS_PUBLIC"'/'"$DIR"'/'"$SUB"'/'"$LSB_JOBINDEX"'/geofile_full.conical.MuonBack-TGeant4.root'
+/usr/local/bin/alienv -w /sw setenv  FairShip/latest  -c /bin/bash  -c 'xrdcp geofile_full.conical.MuonBack-TGeant4.root root://eospublic.cern.ch/'"$EOS_PUBLIC"'/'"$DIR"'/'"$SUB"'/geofile_full.conical.MuonBack-TGeant4.root'
 fi
 

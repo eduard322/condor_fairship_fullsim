@@ -1,9 +1,9 @@
 executable = scripts_to_condor/sim.sh
 arguments = $(directory) $(ProcId) $(N) $(muon_file) $(n_events) $(SUB) $(GEOFILE)
 environment = "EOS_DATA=$ENV(EOS_DATA) EOS_PUBLIC=$ENV(EOS_PUBLIC) SUBTYPE=$ENV(SUBTYPE) CONDOR_FOLDER=$ENV(CONDOR_FOLDER) SHIP_CVMFS_SETUP_FILE=$ENV(SHIP_CVMFS_SETUP_FILE) FAIRSHIP_DIR=$ENV(FAIRSHIP) MAGNET_GEO=$ENV(MAGNET_GEO)"
-output = $ENV(CONDOR_FOLDER)/logs/$ENV(SUBTYPE)/$(ProcId)/output.out
-error = $ENV(CONDOR_FOLDER)/logs/$ENV(SUBTYPE)/$(ProcId)/error.err
-log = $ENV(CONDOR_FOLDER)/logs/$ENV(SUBTYPE)/$(ProcId)/logs.log
+output = $ENV(CONDOR_FOLDER)/logs/$ENV(SUBTYPE)/$(SUB)/$(ProcId)/output.out
+error = $ENV(CONDOR_FOLDER)/logs/$ENV(SUBTYPE)/$(SUB)/$(ProcId)/error.err
+log = $ENV(CONDOR_FOLDER)/logs/$ENV(SUBTYPE)/$(SUB)/$(ProcId)/logs.log
 #requirements = (CERNEnvironment =!= "qa")
 transfer_output_files = ""
 #transfer_input_files = $ENV(CONDOR_ROOT)/magnet_geofiles/$ENV(MAGNET_GEO)

@@ -1,0 +1,1 @@
+/eos/experiment/ship/user/edursov/flatten_muon_samples/flatten_sample_11.root, 33980175, 11
