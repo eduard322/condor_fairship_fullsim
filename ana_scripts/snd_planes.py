@@ -43,6 +43,19 @@ def p_split(mom, soft = 10, hard = 150):
         key = 2
     return key
 
+
+def extract_detector_name(iteration, plane, kin):
+    if plane == "strawtubesPoint":
+        iteration_0 = f"tr_{iteration + kin['station'] - 1}"
+        iteration_0 = 3000 + kin['station'] - 1
+    elif plane in [f"sco_{i}Point" for i in range(3)]:
+        iteration_0 = f"snd_{iteration}"
+        iteration_0 = 2000 + int(plane.split('_')[1][0]) 
+    else:
+        iteration_0 = f"tt_{kin['detid'] // 1000}"
+        iteration_0 = 1000 + kin['detid'] // 1000
+    return iteration_0
+
 def get_all_kinematics(event, hit):
     kinematics = {}
     trid = hit.GetTrackID()
@@ -59,12 +72,49 @@ def get_all_kinematics(event, hit):
     kinematics["mom_key"] = p_split(kinematics["P"])
     return kinematics
  
+# def get_track_rates(event, momentum_trid):
+#     output = {}
+#     output_unw = {}
+#     track_list = []
+#     momentum_trid_copy = deepcopy(momentum_trid)
+#     print(momentum_trid_copy.keys())
+#     tracking_hits = [momentum_trid_copy[x] for x in momentum_trid_copy if x in [f"tr_{i}" for i in range(1,4)]]
+#     # print(len(tracking_hits), len(momentum_trid), tracking_hits, momentum_trid)
+#     tracking_hits_ids = []
+#     for k in range(4):
+#         if not len(tracking_hits[k].keys()):
+#             track_store = [-1]
+#         else:
+#             track_store = list(tracking_hits[k].keys())
+#         tracking_hits_ids.append(track_store)
+#     # print(tracking_hits_ids)
+#     for tr in np.unique(flatten(tracking_hits_ids)):
+#         if tr < 0:
+#             continue
+#         n = 0
+#         for j in flatten(tracking_hits_ids):
+#             if j < 0:
+#                 continue
+#             if j == tr:
+#                 n += 1
+#         if n >= 3 and tr in tracking_hits_ids[0] and tr in tracking_hits_ids[3]:
+#             # print(tracking_hits[0][int(tr)])
+#             # output[tracking_hits[0][int(tr)]['mom_key']] += event.MCTrack[int(tr)].GetWeight()
+#             # output_unw[tracking_hits[0][int(tr)]['mom_key']] += 1
+#             tracking_hits[0][int(tr)]['plane'] = "tr_rec"
+#             track_list.append(tracking_hits[0][int(tr)])
+#     # if track_list:
+#     #     print(track_list)
+#     return output, output_unw, track_list
+
+
 def get_track_rates(event, momentum_trid):
     output = {}
     output_unw = {}
     track_list = []
     momentum_trid_copy = deepcopy(momentum_trid)
-    tracking_hits = momentum_trid_copy[3:]
+    print(momentum_trid_copy.keys())
+    tracking_hits = [momentum_trid_copy[x] for x in momentum_trid_copy if x in [f"tr_{i}" for i in range(1,4)]]
     # print(len(tracking_hits), len(momentum_trid), tracking_hits, momentum_trid)
     tracking_hits_ids = []
     for k in range(4):
@@ -74,7 +124,7 @@ def get_track_rates(event, momentum_trid):
             track_store = list(tracking_hits[k].keys())
         tracking_hits_ids.append(track_store)
     # print(tracking_hits_ids)
-    for tr in np.unique(tracking_hits_ids):
+    for tr in np.unique(flatten(tracking_hits_ids)):
         if tr < 0:
             continue
         n = 0
@@ -87,7 +137,7 @@ def get_track_rates(event, momentum_trid):
             # print(tracking_hits[0][int(tr)])
             # output[tracking_hits[0][int(tr)]['mom_key']] += event.MCTrack[int(tr)].GetWeight()
             # output_unw[tracking_hits[0][int(tr)]['mom_key']] += 1
-            tracking_hits[0][int(tr)]['plane'] = 7
+            tracking_hits[0][int(tr)]['plane'] = "tr_rec"
             track_list.append(tracking_hits[0][int(tr)])
     # if track_list:
     #     print(track_list)
@@ -106,7 +156,7 @@ def get_shield(input):
     shield_z = np.max(shield_z)
     return shield_x, shield_y, shield_z
 
-def process_batch(batch, output, shield, batch_check):
+def process_batch(batch, output, shield, batch_check, eos):
     # outer_path = "/".join([i for i in args.inputfile.split("/")[:-2]])
     #print(outer_path)
 
@@ -118,19 +168,51 @@ def process_batch(batch, output, shield, batch_check):
     #     ch.Add(os.path.join(path, 'ship.conical.MuonBack-TGeant4.root'))
     for file in batch:
         # print(str(file), type(file))
-        ch.Add(str(file))
+        ch.Add(eos + str(file))
 
     # global_info = [[] for _ in range(8)]
     global_info = []
-    sense_planes = [f"sco_{i}Point" for i in range(3)] + ["strawtubesPoint"]
-
+    sense_planes = [f"sco_{i}Point" for i in range(3)] + ["strawtubesPoint"] + ["TTPoint"]
+    columns = []
     for I, event in enumerate(ch):
         # first 3 -- snd planes, last 4 -- tracking stations
-        momentum_trid = [{} for _ in range(7)]
+        momentum_trid = {}
         tr_id_stations = {}
         if batch_check:
             if I % 100000 == 0: print('event ',I,' ',time.ctime())
         for iteration, plane in enumerate(sense_planes):
+            # for hit in eval("event." + plane):
+            #     if not hit:
+            #         continue
+            #     if not hit.GetEnergyLoss() > 0:
+            #         continue
+            #     kin = get_all_kinematics(event, hit)
+            #     if abs(kin['pid']) != 13:
+            #         continue
+            #     #####
+            #     key_proj,x_key,y_key = check_projection(np.array([kin['x'],kin['y'],kin['z']]), 
+            #                                               np.array([kin['px'],kin['py'],kin['pz']]), 
+            #                                               shield[0], shield[1], shield[2]) 
+            #     kin['key_proj'] = key_proj
+            #     #####
+            #     if plane == "strawtubesPoint":
+            #         iteration_0 = f"tr_{iteration + kin['station'] - 1}"
+            #     elif plane in [f"sco_{i}Point" for i in range(3)]:
+            #         iteration_0 = f"snd_{iteration}"
+            #     else:
+            #         iteration_0 = f"tt_{kin['detid'] // 1000}"
+
+            #     if iteration_0 not in momentum_trid:
+            #             momentum_trid[iteration_0] = {}
+            #     if kin['trid'] not in momentum_trid[iteration_0].keys():
+            #         # momentum_trid[iteration_0][kin['trid']] = (kin['P'], kin['W'], key_proj, 
+            #         #                                          kin['x'],kin['y'],kin['z'], 
+            #         #                                          kin['px'],kin['py'],kin['pz'])
+            #         kin["plane"] = iteration_0
+            #         momentum_trid[iteration_0][kin['trid']] = kin
+            #         # global_info[iteration_0].append(momentum_trid[iteration_0][kin['trid']])
+            #         global_info.append(momentum_trid[iteration_0][kin['trid']])
+
             for hit in eval("event." + plane):
                 if not hit:
                     continue
@@ -145,37 +227,58 @@ def process_batch(batch, output, shield, batch_check):
                                                           shield[0], shield[1], shield[2]) 
                 kin['key_proj'] = key_proj
                 #####
-                if plane == "strawtubesPoint":
-                    iteration_0 = iteration + kin["station"] - 1
-                else:
-                    iteration_0 = iteration
-                if kin['trid'] not in momentum_trid[iteration_0].keys():
+
+                if kin['trid'] not in momentum_trid:
+                    momentum_trid[kin['trid']] = {}
                     # momentum_trid[iteration_0][kin['trid']] = (kin['P'], kin['W'], key_proj, 
                     #                                          kin['x'],kin['y'],kin['z'], 
                     #                                          kin['px'],kin['py'],kin['pz'])
+                
+                iteration_0 = extract_detector_name(iteration, plane, kin)
+                if iteration_0 not in momentum_trid[kin['trid']]:
                     kin["plane"] = iteration_0
-                    momentum_trid[iteration_0][kin['trid']] = kin
+                    momentum_trid[kin['trid']][iteration_0] = kin
+                    momentum_trid[kin['trid']][iteration_0]["reco"] = False
                     # global_info[iteration_0].append(momentum_trid[iteration_0][kin['trid']])
-                    global_info.append(momentum_trid[iteration_0][kin['trid']])
+                
+            
+        for track in momentum_trid:
+            if all(x in momentum_trid[track] for x in [3000,3003,3001]) or all(x in momentum_trid[track] for x in [3000,3003,3002]):
+                for iteration_0 in momentum_trid[track]:
+                    momentum_trid[track][iteration_0]["reco"] = True
+            for iteration_0 in momentum_trid[track]:
+                global_info.append(list(momentum_trid[track][iteration_0].values()))
+                columns = list(momentum_trid[track][iteration_0].keys())
+            
+
+        #     global_info.append(momentum_trid[iteration_0][kin['trid']])
+
+
+                
+
         
-        flux_tr, flux_tr_unw, tracks = get_track_rates(event, momentum_trid)
-        if len(tracks) > 0:
-            print(tracks, "\n", len(global_info))
-            for track in tracks:
-                global_info.append(track)
+
+        # flux_tr, flux_tr_unw, tracks = get_track_rates(event, momentum_trid)
+        # if len(tracks) > 0:
+        #     # print(tracks, "\n", len(global_info))
+        #     for track in tracks:
+        #         global_info.append(track)
+
 
     # print(global_info[0].keys())
     # columns = ["P", "W", "x", "y","z", "px","py","pz", "key_proj"]
-    columns = ['trid', 'W', 'x', 'y', 'z', 'px', 'py', 'pz', 'pt', 'P', 'pid', 'detid', 'station', 'mom_key', 'key_proj', 'plane']
+    # columns = ['trid', 'W', 'x', 'y', 'z', 'px', 'py', 'pz', 'pt', 'P', 'pid', 'detid', 'station', 'mom_key', 'key_proj', 'plane', 'reco']
     # print(global_info[1977])
     # for i, x in enumerate(global_info):
     #     print(i, x.values())
     # print(global_info[0].values())
-    df_np = np.array([list(global_info[i].values()) for i in range(len(global_info))])
+    df_np = np.array(global_info)
+    # df_np = np.array([list(global_info[i].values()) for i in range(len(global_info))])
     # print(check[0])
     # for x in check:
     #      print(len(x))
     # df_np = np.concatenate([np.array(x, dtype=np.float64) for x in global_info])
+    print(df_np, columns)
     if ch.GetEntries() > 0:
         df = r.RDF.MakeNumpyDataFrame({key: np.array(df_np[:,i]) for i, key in enumerate(columns)})
     # ... or print the content
@@ -231,17 +334,20 @@ if __name__ == '__main__':
         '--condor',
         type=int,
         default=0,
-        help="0 -- lxplus, 1 -- htcondor")
+        help="0 -- from eos, 1 -- local")
     
     
     args = parser.parse_args()
     # folder = "/eos/experiment/ship/user/edursov/SC_config_04032023_spill_07032023/"
-
     folder = args.inputfile
     print(args.inputfile)
     if not args.condor:
         inp = os.path.join(EOS_PUBLIC, args.inputfile)
-        shield = get_shield(os.path.join(EOS_PUBLIC, folder.split("/")[0]))
+
+        geo_path = ""
+        for path in folder.split("/")[:-2]:
+            geo_path = geo_path + path + "/"
+        shield = get_shield(os.path.join(EOS_PUBLIC, geo_path))
     else:
         inp = args.inputfile
         shield = get_shield(folder.split("/")[0])
@@ -261,6 +367,13 @@ if __name__ == '__main__':
     # r.gROOT.SetBatch(True)
     batches_in_total= len(basePath)
     
+    if not args.condor:
+        if args.eos:
+            eos = "root://eosuser.cern.ch/"
+        else:
+            eos = "root://eospublic.cern.ch/"
+    else:
+        eos = ""
 
     output_files = []
     starting_time = time.time()
@@ -269,10 +382,10 @@ if __name__ == '__main__':
             if args.pseudoBatch:
                 print(f"working on {iteration+1} batch out of {batches_in_total}, {time.ctime()}")
                 output_files.append(args.output.split(".")[0] + f"_{iteration}.root")
-                process_batch(batch, args.output.split(".")[0] + f"_{iteration}.root", shield, False)
+                process_batch(batch, args.output.split(".")[0] + f"_{iteration}.root", shield, False, eos)
             else:
                 print(f"working without batches, starting from {time.ctime()}")
-                process_batch(batch, args.output, shield, True)
+                process_batch(batch, args.output, shield, True, eos)
                 print(f"working without batches, ending {time.ctime()}")
 
     else:
@@ -282,10 +395,10 @@ if __name__ == '__main__':
                     print(f"working on {iteration+1} batch out of {batches_in_total}, {time.ctime()}")
                     output_file = args.output.split(".")[0] + f"_{iteration}.root"
                     output_files.append(output_file)
-                    pool.apply_async(process_batch, (batch, output_file, shield, False))
+                    pool.apply_async(process_batch, (batch, output_file, shield, False, eos))
                 else:
                     print(f"working without batches, starting from {time.ctime()}")
-                    pool.apply_async(process_batch, (batch, args.output, shield, True))
+                    pool.apply_async(process_batch, (batch, args.output, shield, True, eos))
                     print(f"working without batches, ending {time.ctime()}")
             pool.close()
             pool.join()
@@ -297,4 +410,5 @@ if __name__ == '__main__':
             for x in output_files:
                 f.write(x + "\n")
         os.system(f"hadd -f {args.output} @output_list")
+        os.system("rm output_full_*.root")
         os.remove("output_list")

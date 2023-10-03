@@ -27,8 +27,8 @@ elif sub_type == 1:
     EOS = os.environ['EOS_DATA']
 elif sub_type == 2:
     submit = os.path.join("condor_submit_files", "sim_flux_snd.sub")
-    EOS = os.environ['EOS_DATA']
-
+    EOS_DATA = os.environ['EOS_DATA']
+    EOS_PUBLIC = os.environ['EOS_PUBLIC']
 elif sub_type == 3:
     submit = os.path.join("condor_submit_files", "sim_ana.sub")
     EOS_DATA = os.environ['EOS_DATA']
@@ -44,7 +44,7 @@ else:
 
 # os.makedirs(os.path.join("logs", str(sub_type)))
 
-if sub_type != 3:
+if sub_type not in [2,3]:
     if os.path.exists(os.path.join("logs", str(sub_type))): 
         shutil.rmtree(os.path.join("logs", str(sub_type)))
 

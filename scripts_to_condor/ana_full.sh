@@ -18,5 +18,12 @@ MUSHIELD=8
 N=$(( NTOTAL/NJOBS + ( LSB_JOBINDEX == NJOBS ? NTOTAL % NJOBS : 0 ) ))
 FIRST=$(((NTOTAL/NJOBS)*(LSB_JOBINDEX-1)))
 
-python $CONDOR_FOLDER/ana_scripts/snd_planes.py -i "$DIR"/"$SUB"/"$LSB_JOBINDEX"/ --condor 0
-xrdcp output_full.root root://eosuser.cern.ch/"$EOS_DATA"/"$DIR"/"$SUB"/"$LSB_JOBINDEX"/output_full.root
+if eos stat "$EOS_DATA"/"$DIR"/"$SUB"/"$LSB_JOBINDEX"/output_full_new.root; then
+	echo "Target exists, nothing to do."
+	exit 0
+else
+
+python $CONDOR_FOLDER/ana_scripts/snd_planes.py -i "$DIR"/"$SUB"/"$LSB_JOBINDEX"/ --condor 0 --eos 0
+xrdcp output_full.root root://eosuser.cern.ch/"$EOS_DATA"/"$DIR"/"$SUB"/"$LSB_JOBINDEX"/output_full_new.root
+
+fi

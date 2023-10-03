@@ -13,7 +13,7 @@ LSB_JOBINDEX=$((ProcId+1))
 MUONS=$4
 NTOTAL=$5
 SUB=$6
-GEOFILE=$7
+GEO=$7
 MUSHIELD=8
 
 N=$(( NTOTAL/NJOBS + ( LSB_JOBINDEX == NJOBS ? NTOTAL % NJOBS : 0 ) ))
@@ -24,7 +24,8 @@ if eos stat "$EOS_PUBLIC"/"$DIR"/"$SUB"/"$LSB_JOBINDEX"/ship.conical.MuonBack-TG
 else
 
 
-	python "$FAIRSHIP"/macro/run_simScript.py --SC --muShieldDesign $MUSHIELD --MuonBack --nEvents $N --firstEvent $FIRST -f $MUONS --FastMuon -g $CONDOR_FOLDER/geofiles/$GEOFILE 	
+	# python "$FAIRSHIP"/macro/run_simScript.py --noSC --muShieldDesign $MUSHIELD --MuonBack --nEvents $N --firstEvent $FIRST -f $MUONS --FastMuon -g $CONDOR_FOLDER/geofiles/$GEO 
+	python "$FAIRSHIP"/macro/run_simScript.py --MuonBack --nEvents $N --firstEvent $FIRST -f $MUONS --FastMuon --scName $GEO
 	python "$CONDOR_FOLDER"/ana_scripts/snd_planes.py -i . --condor 1
 	xrdcp ship.conical.MuonBack-TGeant4.root root://eospublic.cern.ch/"$EOS_PUBLIC"/"$DIR"/"$SUB"/"$LSB_JOBINDEX"/ship.conical.MuonBack-TGeant4.root
 	xrdcp output_full.root root://eosuser.cern.ch/"$EOS_DATA"/"$DIR"/"$SUB"/"$LSB_JOBINDEX"/output_full.root
