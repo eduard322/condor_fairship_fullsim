@@ -1,4 +1,4 @@
 #!/bin/bash
 source /cvmfs/ship.cern.ch/SHiP-2022/May/setUp.sh
 alienv printenv FairShip/latest >> start_ali.sh
-python run_submissions.py --output sc_v6_10_spills --geofile sc_v6 --sub_type 3 --number 50 --input input_file_10_spills.txt --of SC_full_opt_1
+python run_submissions_universe.py --output sc_v6_field_map --geofile sc_v6 --sub_type 4 --number 50 --input input_for_muon_prod_11_flatten.txt --of SC_full_opt_1

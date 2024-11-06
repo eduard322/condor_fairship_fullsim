@@ -2,7 +2,7 @@
 
 # clear
 
-source /cvmfs/ship.cern.ch/SHiP-2022/May/setUp.sh
+source /cvmfs/ship.cern.ch/24.10/setUp.sh
 source $CONDOR_FOLDER/start_ali.sh
 set -ux
 echo "Starting script."

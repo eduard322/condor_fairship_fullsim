@@ -8,5 +8,6 @@ log = $ENV(CONDOR_FOLDER)/logs/$(sub_type)/$(data_dir)/$(SUB)/$(ProcId)/logs.log
 #requirements = (CERNEnvironment =!= "qa")
 transfer_output_files = ""
 #transfer_input_files = $ENV(CONDOR_ROOT)/magnet_geofiles/$ENV(MAGNET_GEO)
+requirements = (OpSysAndVer =?= "CentOS7")
 +JobFlavour = "testmatch"
 queue $(N)

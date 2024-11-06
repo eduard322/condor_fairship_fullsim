@@ -2,7 +2,7 @@ universe                = docker
 docker_image            = docker.io/edursov/ship_tracks:2.0
 arguments = $(directory) $(ProcId) $(N) $(muon_file) $(n_events) $(SUB) $(GEOFILE)
 environment = "EOS_DATA=$ENV(EOS_DATA) EOS_PUBLIC=$ENV(EOS_PUBLIC) GEOFILE=$ENV(GEOFILE) KERB=$ENV(KERB) SUBTYPE=$ENV(SUBTYPE) CONDOR_FOLDER=$ENV(CONDOR_FOLDER) SHIP_CVMFS_SETUP_FILE=$ENV(SHIP_CVMFS_SETUP_FILE) MAGNET_GEO=$ENV(MAGNET_GEO)"
-transfer_input_files    = scripts_to_condor/docker_universe_sim.sh, docker_files/krb5.conf, $ENV(KERB), geofiles/shield_db.json
+transfer_input_files    = scripts_to_condor/docker_universe_sim.sh, docker_files/krb5.conf, $ENV(KERB), geofiles/shield_db_def.json
 executable              = scripts_to_condor/docker_universe_sim.sh 
 #should_transfer_files   = YES
 #when_to_transfer_output = ON_EXIT

@@ -21,7 +21,7 @@ FIRST=$(((NTOTAL/NJOBS)*(LSB_JOBINDEX-1)))
 
 #echo $FAIRSHIP
 # /usr/local/bin/alienv -w /sw setenv  FairShip/latest  -c /bin/bash -c "echo \$PWD"
-/usr/local/bin/alienv -w /sw setenv  FairShip/latest  -c /bin/bash -c "cp shield_db.json  \$FAIRSHIP/geometry/." 
+/usr/local/bin/alienv -w /sw setenv  FairShip/latest  -c /bin/bash -c "cp shield_db*.json  \$FAIRSHIP/geometry/." 
 /usr/local/bin/alienv -w /sw setenv  FairShip/latest  -c /bin/bash  -c "python \$FAIRSHIP"'/macro/run_simScript.py --MuonBack --nEvents '"$N"' --firstEvent '"$FIRST"' -f '"$MUONS"' --FastMuon --scName '"$GEO"''
 /usr/local/bin/alienv -w /sw setenv  FairShip/latest  -c /bin/bash  -c 'xrdcp ship.conical.MuonBack-TGeant4.root root://eospublic.cern.ch/'"$EOS_PUBLIC"'/'"$DIR"'/'"$SUB"'/'"$LSB_JOBINDEX"'/ship.conical.MuonBack-TGeant4.root'
 /usr/local/bin/alienv -w /sw setenv  FairShip/latest  -c /bin/bash  -c 'xrdcp *.csv root://eospublic.cern.ch/'"$EOS_PUBLIC"'/'"$DIR"'/'"$SUB"'/'"$LSB_JOBINDEX"'/output.csv'
